@@ -9,12 +9,12 @@ import json
 from pprint import pprint
 
 # Read sentence you want to translate
-with open('NMT_API\\temp.txt', 'r', encoding='euc-kr') as f:
+with open('Crawler\\preprocessed_files\\pre_data_0401_0402.txt', 'r', encoding='utf-8') as f:
     raw_sentence = f.read()
 
 # API Key
 client_id = "NJGTWFNflleFvDR2wvqu" 
-client_secret = "_l5YniTspv" 
+client_secret = "Type Password" 
 
 # Naver Papago Open API
 encText = urllib.parse.quote(raw_sentence)
@@ -34,7 +34,7 @@ if(rescode==200):
     pprint(result)
 
     # Json result  
-    with open('NMT_API\\papago.txt', 'w', encoding='utf8') as f:
+    with open('Crawler\\translated_files\\translated_0401_0402.txt', 'w', encoding='utf8') as f:
         f. write(result['message']['result']['translatedText'])
 else:
     print("Error Code:" + rescode)
