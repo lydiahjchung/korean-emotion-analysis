@@ -1,6 +1,6 @@
 # korean-emotion-analysis
 <div>
-  <img src="https://user-images.githubusercontent.com/38775259/81778498-f2ee6c80-952d-11ea-91f3-347ce1ffcadd.jpg" width="600", height="400", padding-left="100px"></img>
+  <center><img src="https://user-images.githubusercontent.com/38775259/81778498-f2ee6c80-952d-11ea-91f3-347ce1ffcadd.jpg" width="600", height="400", padding-left="100px"></img></center>
 </div>
 
 --------------
