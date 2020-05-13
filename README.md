@@ -1,5 +1,9 @@
 # korean-emotion-analysis
+<div>
+  <img src="https://user-images.githubusercontent.com/38775259/81778498-f2ee6c80-952d-11ea-91f3-347ce1ffcadd.jpg" width="600", height="400", padding-left="100px"></img>
+</div>
 
+--------------
 ## Introduction
 **Single-polarity sentiment analysis**는 문장의 감정을 **‘긍정/부정/중립’**으로 나눠서 분석한다. 
 하지만 부정적인 감정에는 공포와 불안, 불안 등 여러 가지 감정이 있듯이 이 모두를 부정적인 감정이라고 여기기에는 빠지는 정보가 많다. 
