@@ -66,4 +66,13 @@
     print("Error Code:" + rescode)
   ```
 - **Kakao NMT API**
+-------------
+## 감성 분석 모델
+- **mLSTM + attention**
+- **Transformer**
+- **Multiclass SVM Kernels**
+## 모델 분석 결과
+- **mLSTM + attention**
+- **Transformer**
+- **Multiclass SVM Kernels**
   
