@@ -21,10 +21,49 @@
 
 ## 데이터 크롤링
 - **Twitter 데이터 크롤링**<br>
-Tweeter Crawling API로 TWEEPY가 있나 최근 7일 데이터만 수집할 수 있는 한계가 있다.<br>
-그 이전의 데이터를 수집하고 싶으면 Premium-Api를 구매해야 하는데 500request에 $149/월 이다.<br>
-따라서 오픈소스로 많이 사용하는 twitterscraper package를 사용하려고 한다.
+    Tweeter Crawling API로 TWEEPY가 있나 최근 7일 데이터만 수집할 수 있는 한계가 있다.<br>
+    그 이전의 데이터를 수집하고 싶으면 Premium-Api를 구매해야 하는데 500request에 $149/월 이다.<br>
+    따라서 오픈소스로 많이 사용하는 twitterscraper package를 사용하려고 한다.
+    ```
+    try:
+        from twitterscraper.query import query_tweets
+        from twitterscraper.tweet import Tweet
+    except:
+        !pip install twitterscraper
+        from twitterscraper.query import query_tweets
+        from twitterscraper.tweet import Tweet
+    ```
+    데이터는 **'총선'**을 키워드로 검색하였다.
+    ```
+    list_of_tweets = query_tweets('총선', begindate=datetime.date(2020,4,1), 
+                                enddate=datetime.date(2020,4,30))
+    ```
+- **Twitter 데이터 전처리**<br>
+    데이터 전처리를 위하여 [**Soyspacing**](https://github.com/lovit/soyspacing) 패키지를 사용하였다. 추가적으로 링크, 트위터 아이디 등을 불용어처리 하였다.
+    ```
+      remove_hypterlink = re.sub(r"http\S+", "", sentence['content'])       # 하이퍼링크 제거
+      remove_twitterlink = re.sub(r"pic\S+", "", remove_hypterlink)         # 트위터링크 제거
+      remove_retweet = re.sub(r"@\S+", "", remove_twitterlink)              # 트위터아이디 제거
+    ```
+
 ## NMT API를 사용한 크롤링 데이터 번역
 - **Google NMT API**
-- **Naver PaPago NMT API**
+- **Naver Papago NMT API**<br>
+  Papago NMT API는 **Naver Developers**에 올라와 있는 [**공식 API 사용 예제**](https://developers.naver.com/docs/nmt/reference)에 따라 구현하였다.<br>
+  이후 결과를 **JSON**파일로 저장하여 **Input 데이터**로 사용하기 쉽게 저장하였다.
+  ```
+  if(rescode==200):
+    response_body = response.read()
+    
+    # Json format
+    result = json.loads(response_body.decode('utf-8'))
+    pprint(result)
+
+    # Json result  
+    with open('Crawler\\translated_files\\translated_0401_0402.txt', 'w', encoding='utf8') as f:
+        f. write(result['message']['result']['translatedText'])
+  else:
+    print("Error Code:" + rescode)
+  ```
 - **Kakao NMT API**
+  
