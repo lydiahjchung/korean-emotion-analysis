@@ -67,14 +67,14 @@
   ```
 - **Kakao NMT API**<br>
   [**공식 번역 개발 가이드**](https://developers.kakao.com/docs/latest/ko/translate/dev-guide)를 참고하여 Kakao NMT API를 구현하였다. <br>
- ```
+  ```
     URL = 'https://kapi.kakao.com/v1/translation/translate'
     APP_KEY = {APP KEY}
 
     r = requests.get(URL, headers=headers, params = paras )
     json_data = json.loads(r.text)
     trans_text = json_data.get('translated_text')
-  ```
+   ```
 -------------
 ## 감성 분석 모델
 - **mLSTM + attention**
