@@ -9,31 +9,32 @@ import json
 from pprint import pprint
 
 # Read sentence you want to translate
-with open('..\\..\\Crawler\\preprocessed_files\\twittter_pre_data_0401_0402.txt', 'r', encoding='utf-8') as f:
-    raw_sentence = f.read()
-
+f = open("twittter_pre_data.txt", 'r', encoding='utf-8')
+raw_sentence = f.readlines()
+sentence_list = raw_sentence
 # API Key
-client_id = "NJGTWFNflleFvDR2wvqu" 
-client_secret = "temp" 
+client_id = "NJGTWFNflleFvDR2wvqu"
+client_secret = "temp"
 
-with open('./translated_0401_0402.txt', 'w', encoding='utf8') as f:
-  for sentence in sentence_list:
-    encText = urllib.parse.quote(sentence)
-    data = "source=ko&target=en&text=" + encText
-    url = "https://openapi.naver.com/v1/papago/n2mt"
-    request = urllib.request.Request(url)
-    request.add_header("X-Naver-Client-Id",client_id)
-    request.add_header("X-Naver-Client-Secret",client_secret)
-    response = urllib.request.urlopen(request, data=data.encode("utf-8"))
-    rescode = response.getcode()
+with open('papago_twitter.txt', 'w', encoding='utf8') as f:
+    for sentence in sentence_list:
+        encText = urllib.parse.quote(sentence)
+        data = "source=ko&target=en&text=" + encText
+        url = "https://openapi.naver.com/v1/papago/n2mt"
+        request = urllib.request.Request(url)
+        request.add_header("X-Naver-Client-Id", client_id)
+        request.add_header("X-Naver-Client-Secret", client_secret)
+        response = urllib.request.urlopen(request, data=data.encode("utf-8"))
+        rescode = response.getcode()
 
-    if(rescode==200):
-        response_body = response.read()
-        
-        # Json format
-        result = json.loads(response_body.decode('utf-8'))
+        if(rescode == 200):
+            response_body = response.read()
 
-        # Json result  
-        f. write(result['message']['result']['translatedText'] + "\n")
-    else:
-        print("Error Code:" + rescode)
+            # Json format
+            result = json.loads(response_body.decode('utf-8'))
+
+            # Json result
+            f. write(result['message']['result']['translatedText'] + "\n")
+            print(result['message']['result']['translatedText'])
+        else:
+            print("Error Code:" + rescode)
