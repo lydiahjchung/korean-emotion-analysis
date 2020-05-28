@@ -1,25 +1,28 @@
+#------------------------------------------------------------------------------------------#
+#  1-1. Pre-labeled Emotion Dataset
+#------------------------------------------------------------------------------------------# 
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 
+col_name = ['text', 'emotions']
 
-# Loading the dataset
-dataset = pd.read_csv("../input/emotion.data")
+#Loading the dataset
+dataset = pd.read_csv("Model/labeled_final.txt", names=col_name, sep=';')
 
+dataset
 # Plot label histogram
-dataset.emotions.value_counts().plot.bar()
+dataset.emotions.value_counts().plot.bar(align='center', alpha=0.5, color=['black', 'red', 'green', 'blue', 'cyan', "purple"])
 
-# Prin some samples
-dataset.head(10)
-
-########################################################################
-###################### Prepare data for model ##########################
-########################################################################
+#------------------------------------------------------------------------------------------#
+# 1-2. Tokenization
+#------------------------------------------------------------------------------------------#
 # Tokenization
 input_sentences = [text.split(" ") for text in dataset["text"].values.tolist()]
 labels = dataset["emotions"].values.tolist()
 
-# Creating Vocabulary
-# Initialize word2id and label2id dictionaries that will be used to encode words and labels
+#------------------------------------------------------------------------------------------#
+# 1-3. Initialize word2id and label2id dictionaries that will be used to encode words and labels
+#------------------------------------------------------------------------------------------#
 word2id = dict()
 label2id = dict()
 
@@ -44,7 +47,9 @@ id2label
 print(max_words)
 print(id2word[5])
 
-# Encoding samples with corresponing integer values
+#------------------------------------------------------------------------------------------#
+# 1-4. Encoding samples with corresponing integer values
+#------------------------------------------------------------------------------------------#
 import keras
 
 # Encode input words and labels
@@ -68,9 +73,11 @@ print(sentence)
 for wordIndex in sentence:
     print(id2word[wordIndex])
 
-########################################################################
-################## Build LSTM model with attention #####################
-########################################################################
+#------------------------------------------------------------------------------------------#
+# 2. Build LSTM Model with attention
+#------------------------------------------------------------------------------------------#
+from multiplicative_lstm import MultiplicativeLSTM
+
 embedding_dim = 100 # The dimension of word embeddings
 
 # Define input tensor
@@ -86,7 +93,7 @@ embedded_inputs = keras.layers.Dropout(0.2)(embedded_inputs)
 
 # Apply Bidirectional LSTM over embedded inputs
 lstm_outs = keras.layers.wrappers.Bidirectional(
-    keras.layers.LSTM(embedding_dim, return_sequences=True)
+    MultiplicativeLSTM(embedding_dim, return_sequences=True)
 )(embedded_inputs)
 
 # Apply dropout to LSTM outputs to prevent overfitting
@@ -111,8 +118,13 @@ model.compile(loss="categorical_crossentropy", metrics=["accuracy"], optimizer='
 # Print model summary
 model.summary()
 
+#------------------------------------------------------------------------------------------#
+# 3. Training the model
+#------------------------------------------------------------------------------------------#
 # Train model 10 iterations
-model.fit(X, Y, epochs=2, batch_size=64, validation_split=0.1, shuffle=True)
+model.fit(X, Y, epochs=10, batch_size=64, validation_split=0.1, shuffle=True)
+
+# Save model
 model.save("lstm_attention_v1_trained.h5")
 
 # Re-create the model to get attention vectors as well as label prediction
@@ -171,7 +183,7 @@ display(HTML(html_text))
 # PLOT EMOTION SCORES
 emotions = [label for label, _ in label_probs.items()]
 scores = [score for _, score in label_probs.items()]
-plt.figure(figsize=(5,2))
+plt.figure(figsize=(10,2))
 plt.bar(np.arange(len(emotions)), scores, align='center', alpha=0.5, color=['black', 'red', 'green', 'blue', 'cyan', "purple"])
 plt.xticks(np.arange(len(emotions)), emotions)
 plt.ylabel('Scores')

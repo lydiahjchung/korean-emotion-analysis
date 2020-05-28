@@ -1,3 +1,4 @@
 *.txt
 *.json
-*.pt
+*.h5
+*.plt
