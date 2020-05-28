@@ -12,11 +12,13 @@ from pprint import pprint
 f = open("twittter_pre_data.txt", 'r', encoding='utf-8')
 raw_sentence = f.readlines()
 sentence_list = raw_sentence
+sentence_list = sentence_list[241:]
 # API Key
 client_id = "NJGTWFNflleFvDR2wvqu"
 client_secret = "temp"
 
 with open('papago_twitter.txt', 'w', encoding='utf8') as f:
+    count = 1
     for sentence in sentence_list:
         encText = urllib.parse.quote(sentence)
         data = "source=ko&target=en&text=" + encText
@@ -35,6 +37,7 @@ with open('papago_twitter.txt', 'w', encoding='utf8') as f:
 
             # Json result
             f. write(result['message']['result']['translatedText'] + "\n")
-            print(result['message']['result']['translatedText'])
+            print("Translated Completed #{}".format(count))
+            count += 1
         else:
             print("Error Code:" + rescode)
