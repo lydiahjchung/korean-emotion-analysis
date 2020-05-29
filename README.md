@@ -47,7 +47,7 @@
     ```
 
 ## NMT API를 사용한 크롤링 데이터 번역
-- **Google NMT API**
+- **Google NMT API**<br>
   Google NMT API는 **The Python Package Index(PyPI)** 에 올라와 있는 [**공식 API 사용 예제**](https://pypi.org/project/googletrans/)에 따라 구현하였다.
     ```
     from googletrans import Translator
