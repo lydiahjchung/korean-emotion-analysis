@@ -89,9 +89,74 @@
 ## 감성 분석 모델
 - **mLSTM + attention**
 - **Transformer**
-- **Multiclass SVM Kernels**
+- **Multiclass SVM**<br>
+  ```
+  from sklearn.model_selection import train_test_split
+  from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+  import matplotlib.pyplot as plt
+  from sklearn.feature_extraction.text import CountVectorizer
+  from sklearn.feature_extraction.text import TfidfTransformer
+  from sklearn.linear_model import SGDClassifier
+  from sklearn.model_selection import cross_val_score, GridSearchCV
+  
+  df = pd.read_csv('/content/drive/Shared drives/데이터분석캡스톤디자인/데이터/라벨 데이터/labeled_final.txt',sep=';', names =['text','label'])
+  X = df.text
+  y = df.label
+  my_tags = ['anger','happiness','surprise', 'sadness', 'fear', 'neutral', 'disgust']
+  
+  cvect = CountVectorizer()
+
+  cvect_X_train = cvect.fit(X_train)
+  cvect_X_test = cvect.fit(X_test)
+  cvect.vocabulary_
+
+  cvect_X_train = cvect.transform(X_train).toarray()
+  cvect_X_test = cvect.transform(X_test).toarray()
+
+  tfid = TfidfTransformer()
+
+  tt_X_train = tfid.fit(cvect_X_train)
+  tt_X_test = tfid.fit(cvect_X_test)
+
+  tt_X_train = tfid.transform(cvect_X_train).toarray()
+  tt_X_test = tfid.transform(cvect_X_test).toarray()
+
+  from sklearn.calibration import CalibratedClassifierCV
+
+  sgd = SGDClassifier(loss='hinge', penalty='l2',alpha=1e-2, random_state=42, max_iter=10, tol=None)
+  sgd = sgd.fit(tt_X_train, y_train)
+
+  y_pred = sgd.predict(tt_X_test)
+
+  clf = CalibratedClassifierCV(sgd) 
+  clf.fit(tt_X_train, y_train)
+
+  y_proba = clf.predict_proba(tt_X_test)
+
+  print(clf.classes_)
+  
+  ```
 ## 모델 분석 결과
 - **mLSTM + attention**
 - **Transformer**
-- **Multiclass SVM Kernels**
+- **Multiclass SVM**<br>
+  ```
+  #Accuracy Score 확인
+  print("train accuracy:", sgd.fit(X_train, y_train).score(X_train, y_train))
+  print('validation accuracy: %s' % accuracy_score(y_pred, y_test))
+  print(classification_report(y_test, y_pred,target_names=my_tags))
+
+  #확률 예측 값 & 예측 클래스 확인
+  X_test = list(X_test)
+  X_test
+  i = 0
   
+  for i in range(len(X_test)):
+    score = np.max(y_proba[i,:])*100
+
+    idx = np.argmax(y_proba[i,:])
+    emotion = clf.classes_[idx]
+
+    if(score > 0.5):
+        print("[{}]는 {:.2f}% 확률로 {} 리뷰이지 않을까 추측해봅니다.\n".format(X_test[i], score, emotion))
+  ```
