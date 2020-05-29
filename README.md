@@ -48,6 +48,15 @@
 
 ## NMT API를 사용한 크롤링 데이터 번역
 - **Google NMT API**
+    ```
+    from googletrans import Translator
+
+    for i in range(len(data_train)):
+      string = data_train[i]
+      translator = Translator(proxies=None, timeout=None)
+      result = translator.translate(string, dest="en")
+      print(result.text)
+    ```
 - **Naver Papago NMT API**<br>
   Papago NMT API는 **Naver Developers**에 올라와 있는 [**공식 API 사용 예제**](https://developers.naver.com/docs/nmt/reference)에 따라 구현하였다.<br>
   이후 결과를 **JSON**파일로 저장하여 **Input 데이터**로 사용하기 쉽게 저장하였다.
