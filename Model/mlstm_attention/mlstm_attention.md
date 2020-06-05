@@ -104,8 +104,8 @@
 
     # 트위터/라벨링 데이터 리스트로 저장하기
     for line in lines:
-    twitter.append(''.join(line.split(';')[0:-1]).replace('\n', ''))  # 트위터 데이터
-    label.append(line.split(';')[-1].replace('\n', ''))               # 라벨링 데이터
+        twitter.append(''.join(line.split(';')[0:-1]).replace('\n', ''))  # 트위터 데이터
+        label.append(line.split(';')[-1].replace('\n', ''))               # 라벨링 데이터
 
     processed = []
     # 데이터 전처리
@@ -120,14 +120,14 @@
 ```
     # Vocabulary 생성 함수
     def build_vocab(data):
-    all_words = []
+        all_words = []
 
-    for words, emotion in data:
-        all_words.extend(words)
+        for words, emotion in data:
+            all_words.extend(words)
 
-    wordlist = nltk.FreqDist(all_words)
-    word_features = wordlist.keys()
-    return wordlist, word_features
+        wordlist = nltk.FreqDist(all_words)
+        word_features = wordlist.keys()
+        return wordlist, word_features
     ```
     ```
     # Vocabulary 생성
@@ -148,10 +148,10 @@
     # 정수 인코딩
     vectorized = []
     for sent, emo in processed:
-    vect = []
-    for word in sent:
-        vect.append(sorted_keys.index(word)+1)
-    vectorized.append([vect, emotion.index(emo)])
+        vect = []
+        for word in sent:
+            vect.append(sorted_keys.index(word)+1)
+        vectorized.append([vect, emotion.index(emo)])
 ```
 ### 5. 데이터 분리
 test 데이터 셋과 train 데이터 셋을 위하여 데이터 분리를 진행했습니다. 현재 데이터가 빈도 수에 따라 정렬되어 있기 때문에 random.shuffle을 통해 순서를 바꿔준 후 데이터를 분리하였습니다.
@@ -174,12 +174,12 @@ test 데이터 셋과 train 데이터 셋을 위하여 데이터 분리를 진�
     x_train, y_train, x_val, y_val = [], [], [], []
 
     for x, y in trains:
-    x_train.append(x)
-    y_train.append(y)
+        x_train.append(x)
+        y_train.append(y)
 
     for x, y in tests:
-    x_val.append(x)
-    y_val.append(y)
+        x_val.append(x)
+        y_val.append(y)
 
     # Numpy로 자료형 변형
     x_train, y_train, x_val, y_val = np.array(x_train), np.array(y_train), np.array(x_val), np.array(y_val)
@@ -211,14 +211,15 @@ Adam optimizer는 stepsize가 gradient의 rescaling에 영향을 받지 않는 �
     # Apply dropout to prevent overfitting
     embedded_inputs = keras.layers.Dropout(0.1)(embedded_inputs)
 
+    # Apply Bidirectional mLSTM over embedded inputs
+    lstm_outs = keras.layers.wrappers.Bidirectional(
+        MultiplicativeLSTM(embedding_dim, return_sequences=True)
+    )(embedded_inputs)
+    
     # Apply Bidirectional LSTM over embedded inputs
     # lstm_outs = keras.layers.wrappers.Bidirectional(
-    #     MultiplicativeLSTM(embedding_dim, return_sequences=True)
+    #     keras.layers.LSTM(embedding_dim, return_sequences=True)
     # )(embedded_inputs)
-
-    lstm_outs = keras.layers.wrappers.Bidirectional(
-        keras.layers.LSTM(embedding_dim, return_sequences=True)
-    )(embedded_inputs)
 
     # Apply dropout to LSTM outputs to prevent overfitting
     lstm_outs = keras.layers.Dropout(0.2)(lstm_outs)
