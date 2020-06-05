@@ -153,8 +153,7 @@
         vect.append(sorted_keys.index(word)+1)
     vectorized.append([vect, emotion.index(emo)])
 ```
-
-###5. 데이터 분리
+### 5. 데이터 분리
 test 데이터 셋과 train 데이터 셋을 위하여 데이터 분리를 진행했습니다. 현재 데이터가 빈도 수에 따라 정렬되어 있기 때문에 random.shuffle을 통해 순서를 바꿔준 후 데이터를 분리하였습니다.
 ```
     import random
