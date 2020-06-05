@@ -36,7 +36,7 @@
 
 ## 데이터 크롤링
 - **Twitter 데이터 크롤링**<br>
-    Tweeter Crawling API로 TWEEPY가 있나 최근 7일 데이터만 수집할 수 있는 한계가 있다.<br>
+    Tweeter Crawling API로 TWEEPY가 있으나 최근 7일 데이터만 수집할 수 있는 한계가 있다.<br>
     그 이전의 데이터를 수집하고 싶으면 Premium-Api를 구매해야 하는데 500request에 $149/월 이다.<br>
     따라서 오픈소스로 많이 사용하는 twitterscraper package를 사용하려고 한다.
     ```
