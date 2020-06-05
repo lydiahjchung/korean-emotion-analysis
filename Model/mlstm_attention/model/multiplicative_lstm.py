@@ -228,7 +228,7 @@ class MultiplicativeLSTM(Recurrent):
             z1 = z[:, self.units: 2 * self.units]
             z2 = z[:, 2 * self.units: 3 * self.units]
             z3 = z[:, 3 * self.units: 4 * self.units]
-            z4 = z[:, 4 * self.units:] # just elementwise multiplication, no activation functions
+            #z4 = z[:, 4 * self.units:] # just elementwise multiplication, no activation functions
 
             i = self.recurrent_activation(z0)
             f = self.recurrent_activation(z1)

@@ -9,13 +9,13 @@ import json
 from pprint import pprint
 
 # Read sentence you want to translate
-f = open("twittter_pre_data.txt", 'r', encoding='utf-8')
+f = open("twitter_100.txt", 'r', encoding='utf-8')
 raw_sentence = f.readlines()
 sentence_list = raw_sentence
-sentence_list = sentence_list[367:]
+
 # API Key
 client_id = "NJGTWFNflleFvDR2wvqu"
-client_secret = "temp"
+client_secret = "_l5YniTspv"
 
 with open('papago_twitter.txt', 'w', encoding='utf8') as f:
     count = 1
