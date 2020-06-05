@@ -19,6 +19,21 @@
 **mLSTM, Transformer, Multi-class SVM kernels** 모델에 이미 공개된 labeled 된 영문 데이터를 training data를 사용하여 multi-category classification emotion analysis 모델을 구축한다.
 이후 총 아홉 가지의 데이터-모델 조합의 output을 비교하고, 최적의 조합을 제시한다.
 
+## Content
+1. [Introduction](#introduction)
+2. [데이터 크롤링](#데이터-크롤링)
+    * [Twitter 데이터 크롤링](#twitter-데이터-크롤링)
+    * [Twitter 데이터 전처리](#twitter-데이터-전처리)
+3. [NMT API를 사용한 크롤링 데이터 번역](#nmt-api를-사용한-크롤링-데이터-번역)
+    * [Google NMT API](#google-nmt-api)
+    * [Naver Papago NMT API](#naver-papago-nmt-api)
+    * [Kakao NMT API](#kakao-nmt-api)
+4. [감성 분석 모델](#감성-분석-모델)
+    * [mLSTM + attention](#mlstm-+-attention)
+    * [Transformer](#transformer)
+    * [Multiclass SVM](#multiclass-svm)
+5. [결과 분석](#결과-분석)
+
 ## 데이터 크롤링
 - **Twitter 데이터 크롤링**<br>
     Tweeter Crawling API로 TWEEPY가 있나 최근 7일 데이터만 수집할 수 있는 한계가 있다.<br>
