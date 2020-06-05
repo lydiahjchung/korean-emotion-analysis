@@ -258,68 +258,68 @@ Adam optimizer는 stepsize가 gradient의 rescaling에 영향을 받지 않는 �
 
     # pre-trained 데이터가 있는지 확인
     if os.path.isfile(path):
-    print("Trained model already exists")
-    model = load_model('lstm_attention_v1_trained.h5')
+        print("Trained model already exists")
+        model = load_model('lstm_attention_v1_trained.h5')
     else:
     # 모델 학습
-    early_stopping = EarlyStopping()             # overfitting 방지
-    hist = model.fit(x_train, y_train, epochs=64, batch_size=32, validation_data=(x_val, y_val), callbacks=[early_stopping])
-    model.save("lstm_attention_v1_trained.h5")   # 모델 저장
+        early_stopping = EarlyStopping()             # overfitting 방지
+        hist = model.fit(x_train, y_train, epochs=64, batch_size=32, validation_data=(x_val, y_val), callbacks=[early_stopping])
+        model.save("lstm_attention_v1_trained.h5")   # 모델 저장
 
-    # 모델 evaluation
-    loss_and_metrics = model.evaluate(x_val, y_val, batch_size=32)
-    print('## evaluation loss and_metrics ##')
-    print(loss_and_metrics)
+        # 모델 evaluation
+        loss_and_metrics = model.evaluate(x_val, y_val, batch_size=32)
+        print('## evaluation loss and_metrics ##')
+        print(loss_and_metrics)
 
-    # 결과 시각화
-    fig, loss_ax = plt.subplots()
-    acc_ax = loss_ax.twinx()
+        # 결과 시각화
+        fig, loss_ax = plt.subplots()
+        acc_ax = loss_ax.twinx()
 
-    loss_ax.plot(hist.history['loss'], 'y', label='train loss')
-    loss_ax.plot(hist.history['val_loss'], 'r', label='val loss')
-    loss_ax.set_xlabel('epoch')
-    loss_ax.set_ylabel('loss')
-    loss_ax.legend(loc='upper left')
+        loss_ax.plot(hist.history['loss'], 'y', label='train loss')
+        loss_ax.plot(hist.history['val_loss'], 'r', label='val loss')
+        loss_ax.set_xlabel('epoch')
+        loss_ax.set_ylabel('loss')
+        loss_ax.legend(loc='upper left')
 
-    acc_ax.plot(hist.history['accuracy'], 'b', label='train acc')
-    acc_ax.plot(hist.history['val_accuracy'], 'g', label='val acc')
-    acc_ax.set_ylabel('accuracy')
-    acc_ax.legend(loc='upper right')
+        acc_ax.plot(hist.history['accuracy'], 'b', label='train acc')
+        acc_ax.plot(hist.history['val_accuracy'], 'g', label='val acc')
+        acc_ax.set_ylabel('accuracy')
+        acc_ax.legend(loc='upper right')
 
-    plt.show()
+        plt.show()
 ```
 
 ## 모델 테스트
 실제 test 데이터를 사용하여 모델을 test하였습니다. 크롤링한 트위터 데이터 100개와, 영화 평론 데이터 100개의 총 200개의 데이터를 test 데이터로 사용하였으며 각각의 결과를 csv로 저장하였습니다.
 ```
     def test_preprocess(platform):
-    with open("{}_final_test.txt".format(platform)) as f:
-        testdata = f.readlines()
+        with open("{}_final_test.txt".format(platform)) as f:
+            testdata = f.readlines()
 
-    final_test, processed_test = [], []
+        final_test, processed_test = [], []
 
-    # 데이터 한 줄씩 읽기
-    for line in testdata:
-        final_test.append(line.strip())
+        # 데이터 한 줄씩 읽기
+        for line in testdata:
+            final_test.append(line.strip())
 
-    # 데이터 전처리
-    for each in final_test:
-        done = pre_to_tok(each)
-        if len(done) != 0:
-        processed_test.append(done)
+        # 데이터 전처리
+        for each in final_test:
+            done = pre_to_tok(each)
+            if len(done) != 0:
+                processed_test.append(done)
 
-    # 데이터 토큰화 및 패딩
-    test_vect = []
-    for sent in processed_test:
-        vect = []
-        for word in sent:
-        if word in sorted_keys:
-            vect.append(sorted_keys.index(word)+1)
-        else:
-            vect.append(len(sorted_keys))
-        test_vect.append(vect)
-    test_vect = keras.preprocessing.sequence.pad_sequences(test_vect, maxlen=max_words)
-    return test_vect, final_test
+        # 데이터 토큰화 및 패딩
+        test_vect = []
+        for sent in processed_test:
+            vect = []
+            for word in sent:
+            if word in sorted_keys:
+                vect.append(sorted_keys.index(word)+1)
+            else:
+                vect.append(len(sorted_keys))
+            test_vect.append(vect)
+        test_vect = keras.preprocessing.sequence.pad_sequences(test_vect, maxlen=max_words)
+        return test_vect, final_test
 
     # NMT API 선택
     platform = "kakao"
@@ -330,10 +330,10 @@ Adam optimizer는 stepsize가 gradient의 rescaling에 영향을 받지 않는 �
     lbl = list(model.predict(vector_result).argmax(axis=-1))
     label, probs, i = [], [], 0
     for each in lbl:
-    label.append(emotion[each])
+        label.append(emotion[each])
     for each in preds:
-    probs.append(max(each))
-    i += 1
+        probs.append(max(each))
+        i += 1
 
     # 데이터 프레임으로 데이터 출력
     import pandas as pd
