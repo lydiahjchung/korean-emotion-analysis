@@ -102,9 +102,9 @@
    ```
 -------------
 ## 감성 분석 모델
-- **mLSTM + attention**
-- **Transformer**
-- **Multiclass SVM**<br>
+- [**mLSTM + attention**](Model/mlstm_attention/mlstm_attention.md)
+- [**Transformer**](Model/transformer/transformer.md)
+- [**Multiclass SVM**](Model/msvm_kernel/msvm_kernel.md)
   ```
   from sklearn.model_selection import train_test_split
   from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
@@ -152,9 +152,6 @@
   
   ```
 ## 모델 분석 결과
-- [**mLSTM + attention**](Model/mlstm_attention/mlstm_attention.md)
-- [**Transformer**](Model/transformer/transformer.md)
-- [**Multiclass SVM**](Model/msvm_kernel/msvm_kernel.md)
   ```
   #Accuracy Score 확인
   print("train accuracy:", sgd.fit(X_train, y_train).score(X_train, y_train))
