@@ -48,7 +48,7 @@
         from twitterscraper.query import query_tweets
         from twitterscraper.tweet import Tweet
     ```
-    데이터는 **'총선'**을 키워드로 검색하였다.
+    데이터는 **총선**을 키워드로 검색하였다.
     ```
     list_of_tweets = query_tweets('총선', begindate=datetime.date(2020,4,1), 
                                 enddate=datetime.date(2020,4,30))
