@@ -152,9 +152,9 @@
   
   ```
 ## 모델 분석 결과
-- [mLSTM + attention](Model/mlstm_attention/mlstm_attention.md)
-- [Transformer](Model/transformer/transformer.md)
-- [Multiclass SVM](Model/msvm_kernel/msvm_kernel.md)
+- [**mLSTM + attention**](Model/mlstm_attention/mlstm_attention.md)
+- [**Transformer**](Model/transformer/transformer.md)
+- [**Multiclass SVM**](Model/msvm_kernel/msvm_kernel.md)
   ```
   #Accuracy Score 확인
   print("train accuracy:", sgd.fit(X_train, y_train).score(X_train, y_train))
