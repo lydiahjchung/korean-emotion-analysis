@@ -19,17 +19,17 @@ For specified details of each steps, read the following section: ***Using Google
 Detailed order of the implementation process is delineated below.
 This code is limitting its output to *Kakao NMT translated data set*. For other outputs using Google or Papago NMT, alter **{NMT API NAME}** in section **Predicting label classification of the test data set**.
 
-###Data Preprocessing
+### Data Preprocessing
 
 The labeled data used for this emotion analysis has **seven different labels**: *anger; happiness; neutral; sadness; surprise; fear; disgust*.
 
 #### Setup
 
-  import re
-  import nltk
-  from nltk.tokenize import word_tokenize
-  from string import punctuation
-  from nltk.corpus import stopwords
-  from nltk.stem import PorterStemmer
-  nltk.download('punkt')
-  nltk.download('stopwords')
+    import re
+    import nltk
+    from nltk.tokenize import word_tokenize
+    from string import punctuation
+    from nltk.corpus import stopwords
+    from nltk.stem import PorterStemmer
+    nltk.download('punkt')
+    nltk.download('stopwords')
