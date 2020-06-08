@@ -25,137 +25,109 @@ The labeled data used for this emotion analysis has **seven different labels**: 
 
 #### Setup
 ```python
-    import re
-    import nltk
-    from nltk.tokenize import word_tokenize
-    from string import punctuation
-    from nltk.corpus import stopwords
-    from nltk.stem import PorterStemmer
-    nltk.download('punkt')
-    nltk.download('stopwords')
+import re
+import nltk
+from nltk.tokenize import word_tokenize
+from string import punctuation
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+nltk.download('punkt')
+nltk.download('stopwords')
 ```
 #### Loading the data
 ```python
-    # loading the original labeled data
-    with open("labeled_final.txt") as f:
-        data = f.readlines()
+# loading the original labeled data
+with open("labeled_final.txt") as f:
+    data = f.readlines()
 
-<<<<<<< HEAD
-    # labeled = [[sentence, emotion], [sentence, emotion], ... ]
-    labeled = []
-    for line in data:
-        cut_idx = len(line) - line[::-1].find(";")
-        sent, em = line[:cut_idx-1], line[cut_idx:].strip()
-        labeled.append([sent, em])
+# labeled = [[sentence, emotion], [sentence, emotion], ... ]
+labeled = []
+for line in data:
+    cut_idx = len(line) - line[::-1].find(";")
+    sent, em = line[:cut_idx-1], line[cut_idx:].strip()
+    labeled.append([sent, em])
 ```
 #### Cleaning and Normalizing
 
 For twitter text datas in the training set, regular expression is used to remove usernames, hashtags, and URLs. Abbreviations are also decontracted.
 
 ```python
-=======
-    import re
-    import nltk
-    from nltk.tokenize import word_tokenize
-    from string import punctuation
-    from nltk.corpus import stopwords
-    from nltk.stem import PorterStemmer
-    nltk.download('punkt')
-    nltk.download('stopwords')
+def decontracting(phrase):
+    phrase = re.sub(r"won\'t", "will not", phrase)
+    phrase = re.sub(r"can\'t", "can not", phrase)
+    phrase = re.sub(r"n\'t", " not", phrase)
+    phrase = re.sub(r"\'re", " are", phrase)
+    phrase = re.sub(r"\'s", " is", phrase)
+    phrase = re.sub(r"\'d", " would", phrase)
+    phrase = re.sub(r"\'ll", " will", phrase)
+    phrase = re.sub(r"\'t", " not", phrase)
+    phrase = re.sub(r"\'ve", " have", phrase)
+    phrase = re.sub(r"\'m", " am", phrase)
+    phrase = re.sub(r"won't", "will not", phrase)
+    phrase = re.sub(r"can't", "can not", phrase)
+    phrase = re.sub(r"n't", " not", phrase)
+    phrase = re.sub(r"'re", " are", phrase)
+    phrase = re.sub(r"'s", " is", phrase)
+    phrase = re.sub(r"'d", " would", phrase)
+    phrase = re.sub(r"'ll", " will", phrase)
+    phrase = re.sub(r"'t", " not", phrase)
+    phrase = re.sub(r"'ve", " have", phrase)
+    phrase = re.sub(r"'m", " am", phrase)
+    phrase = re.sub(r"w/", "with", phrase)
+    return phrase
 
-#### Loading the data
-
-    # loading the original labeled data
-    with open("labeled_final.txt") as f:
-      data = f.readlines()
-
-    # labeled = [[sentence, emotion], [sentence, emotion], ... ]
-    labeled = []
-    for line in data:
-      cut_idx = len(line) - line[::-1].find(";")
-      sent, em = line[:cut_idx-1], line[cut_idx:].strip()
-      labeled.append([sent, em])
-
-#### Cleaning and Normalizing
-
->>>>>>> ee06fc2b6c4f1780e38e034ed38d9f176db79c99
-    def decontracting(phrase):
-        phrase = re.sub(r"won\'t", "will not", phrase)
-        phrase = re.sub(r"can\'t", "can not", phrase)
-        phrase = re.sub(r"n\'t", " not", phrase)
-        phrase = re.sub(r"\'re", " are", phrase)
-        phrase = re.sub(r"\'s", " is", phrase)
-        phrase = re.sub(r"\'d", " would", phrase)
-        phrase = re.sub(r"\'ll", " will", phrase)
-        phrase = re.sub(r"\'t", " not", phrase)
-        phrase = re.sub(r"\'ve", " have", phrase)
-        phrase = re.sub(r"\'m", " am", phrase)
-        phrase = re.sub(r"won't", "will not", phrase)
-        phrase = re.sub(r"can't", "can not", phrase)
-        phrase = re.sub(r"n't", " not", phrase)
-        phrase = re.sub(r"'re", " are", phrase)
-        phrase = re.sub(r"'s", " is", phrase)
-        phrase = re.sub(r"'d", " would", phrase)
-        phrase = re.sub(r"'ll", " will", phrase)
-        phrase = re.sub(r"'t", " not", phrase)
-        phrase = re.sub(r"'ve", " have", phrase)
-        phrase = re.sub(r"'m", " am", phrase)
-        phrase = re.sub(r"w/", "with", phrase)
-        return phrase
-
-    def cleaning(text):
-<<<<<<< HEAD
-        ''' regex, decontraction, tokenizing, stemming in one go '''
-        text = text.lower()
-        text = re.sub('@[^\s]+', '', text)
-        text = re.sub('((www\.[^\s]+)|(https?://[^\s]+))', '', text)
-        text = re.sub('#([^\s]+)', '', text)
-        text = decontracting(text)
-        return text
+def cleaning(text):
+    ''' regex, decontraction, tokenizing, stemming in one go '''
+    text = text.lower()
+    text = re.sub('@[^\s]+', '', text)
+    text = re.sub('((www\.[^\s]+)|(https?://[^\s]+))', '', text)
+    text = re.sub('#([^\s]+)', '', text)
+    text = decontracting(text)
+    return text
 ```
 #### Removing stopwords, Stemming, and Tokenizing
 
 Using nltk's stopwords and punctuations, and Porter Stemmer, each sentences was stemmed and tokenized after removing unnecessary stopwords.
 
 ```python
-    porter = PorterStemmer()
+porter = PorterStemmer()
 
-    tmps = ['``', "''", '...', '--', '~~', '"', '..', '“', '-_____-', 'm̶̲̅ε̲̣', 'rt', '=/', '»']
-    itos = ['0','1','2','3','4','5','6','7','8','9','10']
+tmps = ['``', "''", '...', '--', '~~', '"', '..', '“', '-_____-', 'm̶̲̅ε̲̣', 'rt', '=/', '»']
+itos = ['0','1','2','3','4','5','6','7','8','9','10']
 
-    STOPWORDS = set(stopwords.words('english') + list(punctuation) + list(range(11)) + tmps + itos)
+STOPWORDS = set(stopwords.words('english') + list(punctuation) + list(range(11)) + tmps + itos)
 
-    def preprocessing(text):
-        text = word_tokenize(text)
-        return [porter.stem(word) for word in text if word not in STOPWORDS]
+def preprocessing(text):
+    text = word_tokenize(text)
+    return [porter.stem(word) for word in text if word not in STOPWORDS]
 ```
 ```python  
-    processed = []
+processed = []
 
-    for sentence, emotion in cleaned:
-        done = preprocessing(sentence)
-        if len(done) != 0:
-            processed.append([done, emotion])
+for sentence, emotion in cleaned:
+    done = preprocessing(sentence)
+    if len(done) != 0:
+        processed.append([done, emotion])
 ```
 #### Building Vocabulary
 
 The frequency of each stemmed words was counted to build a vocabulary. This vocabulary is further used when each words is integer encoded.
 
 ```python
-    def build_vocab(data):
-        all_words = []
+def build_vocab(data):
+    all_words = []
 
-        for words, emotion in data:
-          all_words.extend(words)
+    for words, emotion in data:
+      all_words.extend(words)
 
-        wordlist = nltk.FreqDist(all_words)
-        word_features = wordlist.keys()
-        return wordlist, word_features
+    wordlist = nltk.FreqDist(all_words)
+    word_features = wordlist.keys()
+    return wordlist, word_features
 
-    wordlist, word_features = build_vocab(processed)
-    sorted_wordlist = {k: v for k, v in sorted(wordlist.items(), key=lambda item: item[1], reverse=True)}
-    vocab = list(sorted_wordlist.keys())
-    vocab.append('<UNK>')
+wordlist, word_features = build_vocab(processed)
+sorted_wordlist = {k: v for k, v in sorted(wordlist.items(), key=lambda item: item[1], reverse=True)}
+vocab = list(sorted_wordlist.keys())
+vocab.append('<UNK>')
 ```
 #### Splitting data set and Integer Encoding
 
