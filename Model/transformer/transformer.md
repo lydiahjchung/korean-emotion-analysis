@@ -424,12 +424,3 @@ kakao_transformer.to_csv("kakao_transformer.csv",
                   columns = ['sentence', 'label', 'probability'],
                   index = False)
 ```
-=======
-      ''' regex, decontraction, tokenizing, stemming in one go '''
-      text = text.lower()
-      text = re.sub('@[^\s]+', '', text)
-      text = re.sub('((www\.[^\s]+)|(https?://[^\s]+))', '', text)
-      text = re.sub('#([^\s]+)', '', text)
-      text = decontracting(text)
-      return text
->>>>>>> ee06fc2b6c4f1780e38e034ed38d9f176db79c99
