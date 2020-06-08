@@ -86,30 +86,30 @@ if __name__ == "__main__":
         google_input = g.readlines()
     with open('../../Data/kakao_final_test.txt') as k:
         kakao_input = k.readlines()
-    # with open('papago_final_test.txt') as p:
-    #     papago_input = p.readline()
+    with open('../../Data/papago_final_test.txt') as p:
+        papago_input = p.readline()
 
     # preprocess input test data sets using vocab built by the training data set
     google_processed = preprocess.preprocessing_test(google_input)
     kakao_processed = preprocess.preprocessing_test(kakao_input)
-    # papago_processed = preprocess.preprocessing_test(papago_input)
+    papago_processed = preprocess.preprocessing_test(papago_input)
 
     # pad each processed data sets
     google_processed = splitting.padding(google_processed)
     kakao_processed = splitting.padding(kakao_processed)
-    # papago_processed = splitting.padding(papago_processed)
+    papago_processed = splitting.padding(papago_processed)
 
     # predict labels and save the results into csv files
     google_predict = model.predict(google_processed)
     kakao_predict = model.predict(kakao_processed)
-    # papago_predict = model.predict(papago_processed)
+    papago_predict = model.predict(papago_processed)
 
     # determine predicted label and the probability of the prediction
     google_sentence, google_label, google_probability = splitting.predictions(google_input, google_predict)
     kakao_sentence, kakao_label, kakao_probability = splitting.predictions(kakao_input, kakao_predict)
-    # papago_sentence, papago_label, papago_probability = splitting.predictions(papago_input, papago_predict)
+    papago_sentence, papago_label, papago_probability = splitting.predictions(papago_input, papago_predict)
 
     # saving each outputs as csv
     preprocess.output_csv(google_sentence, google_label, google_probability, 'google')
     preprocess.output_csv(kakao_sentence, kakao_label, kakao_probability, 'kakao')
-    # preprocess.output_csv(papago_sentence, papago_label, papago_probability, 'papago')
+    preprocess.output_csv(papago_sentence, papago_label, papago_probability, 'papago')
