@@ -40,6 +40,7 @@ The labeled data used for this emotion analysis has **seven different labels**: 
     with open("labeled_final.txt") as f:
         data = f.readlines()
 
+<<<<<<< HEAD
     # labeled = [[sentence, emotion], [sentence, emotion], ... ]
     labeled = []
     for line in data:
@@ -52,6 +53,32 @@ The labeled data used for this emotion analysis has **seven different labels**: 
 For twitter text datas in the training set, regular expression is used to remove usernames, hashtags, and URLs. Abbreviations are also decontracted.
 
 ```python
+=======
+    import re
+    import nltk
+    from nltk.tokenize import word_tokenize
+    from string import punctuation
+    from nltk.corpus import stopwords
+    from nltk.stem import PorterStemmer
+    nltk.download('punkt')
+    nltk.download('stopwords')
+
+#### Loading the data
+
+    # loading the original labeled data
+    with open("labeled_final.txt") as f:
+      data = f.readlines()
+
+    # labeled = [[sentence, emotion], [sentence, emotion], ... ]
+    labeled = []
+    for line in data:
+      cut_idx = len(line) - line[::-1].find(";")
+      sent, em = line[:cut_idx-1], line[cut_idx:].strip()
+      labeled.append([sent, em])
+
+#### Cleaning and Normalizing
+
+>>>>>>> ee06fc2b6c4f1780e38e034ed38d9f176db79c99
     def decontracting(phrase):
         phrase = re.sub(r"won\'t", "will not", phrase)
         phrase = re.sub(r"can\'t", "can not", phrase)
@@ -77,6 +104,7 @@ For twitter text datas in the training set, regular expression is used to remove
         return phrase
 
     def cleaning(text):
+<<<<<<< HEAD
         ''' regex, decontraction, tokenizing, stemming in one go '''
         text = text.lower()
         text = re.sub('@[^\s]+', '', text)
@@ -424,3 +452,12 @@ kakao_transformer.to_csv("kakao_transformer.csv",
                   columns = ['sentence', 'label', 'probability'],
                   index = False)
 ```
+=======
+      ''' regex, decontraction, tokenizing, stemming in one go '''
+      text = text.lower()
+      text = re.sub('@[^\s]+', '', text)
+      text = re.sub('((www\.[^\s]+)|(https?://[^\s]+))', '', text)
+      text = re.sub('#([^\s]+)', '', text)
+      text = decontracting(text)
+      return text
+>>>>>>> ee06fc2b6c4f1780e38e034ed38d9f176db79c99
