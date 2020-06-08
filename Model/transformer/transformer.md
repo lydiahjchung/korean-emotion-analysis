@@ -33,3 +33,51 @@ The labeled data used for this emotion analysis has **seven different labels**: 
     from nltk.stem import PorterStemmer
     nltk.download('punkt')
     nltk.download('stopwords')
+
+#### Loading the data
+
+    # loading the original labeled data
+    with open("labeled_final.txt") as f:
+      data = f.readlines()
+
+    # labeled = [[sentence, emotion], [sentence, emotion], ... ]
+    labeled = []
+    for line in data:
+      cut_idx = len(line) - line[::-1].find(";")
+      sent, em = line[:cut_idx-1], line[cut_idx:].strip()
+      labeled.append([sent, em])
+      
+#### Cleaning and Normalizing
+
+    def decontracting(phrase):
+        phrase = re.sub(r"won\'t", "will not", phrase)
+        phrase = re.sub(r"can\'t", "can not", phrase)
+        phrase = re.sub(r"n\'t", " not", phrase)
+        phrase = re.sub(r"\'re", " are", phrase)
+        phrase = re.sub(r"\'s", " is", phrase)
+        phrase = re.sub(r"\'d", " would", phrase)
+        phrase = re.sub(r"\'ll", " will", phrase)
+        phrase = re.sub(r"\'t", " not", phrase)
+        phrase = re.sub(r"\'ve", " have", phrase)
+        phrase = re.sub(r"\'m", " am", phrase)
+        phrase = re.sub(r"won't", "will not", phrase)
+        phrase = re.sub(r"can't", "can not", phrase)
+        phrase = re.sub(r"n't", " not", phrase)
+        phrase = re.sub(r"'re", " are", phrase)
+        phrase = re.sub(r"'s", " is", phrase)
+        phrase = re.sub(r"'d", " would", phrase)
+        phrase = re.sub(r"'ll", " will", phrase)
+        phrase = re.sub(r"'t", " not", phrase)
+        phrase = re.sub(r"'ve", " have", phrase)
+        phrase = re.sub(r"'m", " am", phrase)
+        phrase = re.sub(r"w/", "with", phrase)
+        return phrase
+
+    def cleaning(text):
+      ''' regex, decontraction, tokenizing, stemming in one go '''
+      text = text.lower()
+      text = re.sub('@[^\s]+', '', text)
+      text = re.sub('((www\.[^\s]+)|(https?://[^\s]+))', '', text)
+      text = re.sub('#([^\s]+)', '', text)
+      text = decontracting(text)
+      return text
