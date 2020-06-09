@@ -9,15 +9,15 @@ import json
 from pprint import pprint
 
 # Read sentence you want to translate
-f = open("twitter_100.txt", 'r', encoding='utf-8')
+f = open("Data/movie_100.txt", 'r', encoding='utf-8')
 raw_sentence = f.readlines()
 sentence_list = raw_sentence
 
 # API Key
 client_id = "NJGTWFNflleFvDR2wvqu"
-client_secret = "_l5YniTspv"
+client_secret = "temp"
 
-with open('papago_twitter.txt', 'w', encoding='utf8') as f:
+with open('papago_final_movie.txt', 'w', encoding='utf8') as f:
     count = 1
     url = "https://openapi.naver.com/v1/papago/n2mt"
     request = urllib.request.Request(url)
