@@ -163,7 +163,7 @@ k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.<br>
 
 **Check the predicted percentage/class distribution**<br>
 각 nmt_api로 번역한 test set에 대한 예측 확률과 클래스 분포를 살펴 보았다.<br>
-결과는 다음과 같다:<br>
+
 **Google_nmt_api test set**<br>
 predicted percentage distribution<br>
 30%    87<br>
