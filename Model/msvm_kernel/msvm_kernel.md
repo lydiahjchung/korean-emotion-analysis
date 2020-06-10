@@ -1,6 +1,6 @@
 ## 감정 데이터셋
-모델 학습을 위해 **7가지 카테고리의 감정 데이터**가 라벨링된 데이터셋을 사용하였다.<br><br>
-감정 카테고리는 다음과 같다:
+모델 학습을 위해 **7가지 카테고리의 감정 데이터**가 라벨링된 데이터셋을 사용하였다.<br>
+감정 카테고리는 다음과 같다:<br>
 **anger, happiness, surprise, sadness, fear, neutral, disgust**
 
 **Load train set**
@@ -31,7 +31,7 @@
     y_train = df_train.label
 ```
 
-**Final Preprocessing**
+**Final Preprocessing**<br>
 최종적으로 twitter dataset의 특수문자를 제거하였다.
 
 ```
@@ -73,7 +73,7 @@
     y_train = df_train.label
 ```
 
-##Visualize label distribution
+**Visualize label distribution**<br>
 레이블 분포가 균일한지 시각화를 통해 확인하였다.
 ```
     #레이블 분포 확인
@@ -85,7 +85,7 @@
     y_train.value_counts().plot(kind='bar');
 ```
 
-##Load test set (should load 1 of 3, one by one)
+**Load test set (should load 1 of 3, one by one)**
 ```
     # Test set 불러오기
     #Google
@@ -104,7 +104,7 @@
     y_test = df_test.label
 ```
 
-##Let's train the model!
+**Let's train the model!**<br>
 SDGClassifier(loss hinge), LinearSVC, SVC 세 모델 중 가장 성능이 좋았던 SDGClassifier로 학습을 시켰다.
 ```
     # SGDClassifier - loss = 'hinge'
@@ -139,11 +139,11 @@ SDGClassifier(loss hinge), LinearSVC, SVC 세 모델 중 가장 성능이 좋았
     print(clf.classes_)
 ```
 
-##k-fold
-k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.
-3-fold score mean: 0.849
-5-fold score mean: 0.856
-10-fold score mean: 0.862
+**k-fold**<br>
+k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.<br>
+3-fold score mean: 0.849<br>
+5-fold score mean: 0.856<br>
+10-fold score mean: 0.862<br>
 ```
     #3-fold
     scores = cross_val_score(sgd,  df.text, df.label, cv=3)
@@ -161,61 +161,61 @@ k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.
     print('cross-val-score.mean \n{:.3f}'.format(scores.mean()))
 ```
 
-##Check the predicted percentage/class distribution
-각 nmt_api로 번역한 test set에 대한 예측 확률과 클래스 분포를 살펴 보았다.
+**Check the predicted percentage/class distribution**<br>
+각 nmt_api로 번역한 test set에 대한 예측 확률과 클래스 분포를 살펴 보았다.<br><br>
 
-결과는 다음과 같다:
-**Google_nmt_api test set**
-<predicted percentage distribution>
-30%    87
-20%    50
-40%    49
-50%    10
-10%     4
+결과는 다음과 같다:<br>
+**Google_nmt_api test set**<br>
+<predicted percentage distribution><br>
+30%    87<br>
+20%    50<br>
+40%    49<br>
+50%    10<br>
+10%     4<br>
 
-<predicted class distribution>
-neutral      84
-disgust      84
-sadness       8
-happiness     7
-anger         6
-fear          6
-surprise      5
+<predicted class distribution><br>
+neutral      84<br>
+disgust      84<br>
+sadness       8<br>
+happiness     7<br>
+anger         6<br>
+fear          6<br>
+surprise      5<br>
 
-**Kakao_nmt_api test set**
-<predicted percentage distribution>
-30%    72
-20%    62
-40%    45
-50%    13
-10%     7
-60%     1
+**Kakao_nmt_api test set**<br>
+<predicted percentage distribution><br>
+30%    72<br>
+20%    62<br>
+40%    45<br>
+50%    13<br>
+10%     7<br>
+60%     1<br>
 
-<predicted class distribution>
-disgust      85
-neutral      79
-happiness    11
-fear          8
-sadness       8
-surprise      6
-anger         3
+<predicted class distribution><br>
+disgust      85<br>
+neutral      79<br>
+happiness    11<br>
+fear          8<br>
+sadness       8<br>
+surprise      6<br>
+anger         3<br>
 
-**Papago_nmt_api test set**
-<predicted percentage distribution>
-30%    78
-40%    49
-20%    48
-50%    12
-10%     2
+**Papago_nmt_api test set**<br><br>
+<predicted percentage distribution><br>
+30%    78<br>
+40%    49<br>
+20%    48<br>
+50%    12<br>
+10%     2<br>
 
-<predicted class distribution>
-disgust      94
-neutral      68
-happiness     8
-sadness       8
-anger         4
-fear          4
-surprise      3
+<predicted class distribution><br>
+disgust      94<br>
+neutral      68<br>
+happiness     8<br>
+sadness       8<br>
+anger         4<br>
+fear          4<br>
+surprise      3<br>
 
 ```
     X_test = list(X_test)
@@ -296,7 +296,7 @@ surprise      3
     print("\npredicted class distribution:\n", look_class_papago[0].value_counts())
 ```
 
-##Save the result 
+**Save the result**<br>
 ```
     #결과 저장
     df_X_test = pd.DataFrame({'text':X_test})
@@ -309,11 +309,11 @@ surprise      3
     df_result.to_csv('/content/drive/My Drive/google_result_svm.csv')
 ```
 
-#Trials
-아래는 성능 개선과 모델 별 성능 비교를 위해 사용한 코드이다.
-- Bagging
-- LinearSVC
-- SVC
+**Trials**<br>
+아래는 성능 개선과 모델 별 성능 비교를 위해 사용한 코드이다.<br>
+- Bagging<br>
+- LinearSVC<br>
+- SVC<br>
 
 ```
     #Bagging(SDGClassifier)
