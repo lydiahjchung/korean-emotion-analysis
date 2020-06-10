@@ -1,3 +1,6 @@
+"""
+처리한도: 약 500 문장
+"""
 from googletrans import Translator
 
 #Data 불러오기
