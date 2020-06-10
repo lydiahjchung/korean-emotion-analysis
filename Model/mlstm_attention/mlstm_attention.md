@@ -248,7 +248,7 @@ Adam optimizer는 stepsize가 gradient의 rescaling에 영향을 받지 않는 �
     model.summary()
 ```
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/38775259/84282858-3fe95100-ab75-11ea-8106-120f158d44a6.png" width="400", height="300"></img>
+  <img src="https://user-images.githubusercontent.com/38775259/84282858-3fe95100-ab75-11ea-8106-120f158d44a6.png" width="ㅕ800", height="500"></img>
 </div>
 
 ## 모델 훈련
