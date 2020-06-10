@@ -3,7 +3,7 @@
 감정 카테고리는 다음과 같다:
 **anger, happiness, surprise, sadness, fear, neutral, disgust**
 
-##Load train set
+**Load train set**
 ```
     import os
     import logging
@@ -31,7 +31,7 @@
     y_train = df_train.label
 ```
 
-##Final Preprocessing
+**Final Preprocessing**
 최종적으로 twitter dataset의 특수문자를 제거하였다.
 
 ```
