@@ -162,18 +162,17 @@ k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.<br>
 ```
 
 **Check the predicted percentage/class distribution**<br>
-각 nmt_api로 번역한 test set에 대한 예측 확률과 클래스 분포를 살펴 보았다.<br><br>
-
+각 nmt_api로 번역한 test set에 대한 예측 확률과 클래스 분포를 살펴 보았다.<br>
 결과는 다음과 같다:<br>
 **Google_nmt_api test set**<br>
-<predicted percentage distribution><br>
+predicted percentage distribution<br>
 30%    87<br>
 20%    50<br>
 40%    49<br>
 50%    10<br>
 10%     4<br>
 
-<predicted class distribution><br>
+predicted class distribution<br>
 neutral      84<br>
 disgust      84<br>
 sadness       8<br>
@@ -183,7 +182,7 @@ fear          6<br>
 surprise      5<br>
 
 **Kakao_nmt_api test set**<br>
-<predicted percentage distribution><br>
+predicted percentage distribution<br>
 30%    72<br>
 20%    62<br>
 40%    45<br>
@@ -191,7 +190,7 @@ surprise      5<br>
 10%     7<br>
 60%     1<br>
 
-<predicted class distribution><br>
+predicted class distribution<br>
 disgust      85<br>
 neutral      79<br>
 happiness    11<br>
@@ -200,15 +199,15 @@ sadness       8<br>
 surprise      6<br>
 anger         3<br>
 
-**Papago_nmt_api test set**<br><br>
-<predicted percentage distribution><br>
+**Papago_nmt_api test set**<br>
+predicted percentage distribution<br>
 30%    78<br>
 40%    49<br>
 20%    48<br>
 50%    12<br>
 10%     2<br>
 
-<predicted class distribution><br>
+predicted class distribution<br>
 disgust      94<br>
 neutral      68<br>
 happiness     8<br>
