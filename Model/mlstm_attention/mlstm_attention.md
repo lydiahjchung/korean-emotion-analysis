@@ -18,6 +18,9 @@
     # 라벨 데이터 히스토그램
     dataset.emotions.value_counts().plot.bar(align='center', alpha=0.5, color=['black', 'red', 'green', 'blue', 'cyan', "purple"])
 ```
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/38775259/84282583-e54ff500-ab74-11ea-9fdb-87b7a3d29583.png" width="400", height="300"></img>
+</div>
 
 ## 데이터 전처리
 데이터 전처리는 용도에 맞게 데이터를 사전에 변경하는 작업입니다. 
@@ -244,6 +247,9 @@ Adam optimizer는 stepsize가 gradient의 rescaling에 영향을 받지 않는 �
     # Print model summary
     model.summary()
 ```
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/38775259/84282858-3fe95100-ab75-11ea-8106-120f158d44a6.png" width="400", height="300"></img>
+</div>
 
 ## 모델 훈련
 앞서 정의한 모델에 test/train 데이터를 활용하여 모델을 훈련시켰습니다. Overfitting을 방지하기 위하여 keras의 EarlyStopping을 사용하였습니다. 모델이 이미 존재하는 경우 훈련된 모델을 불러왔으며, 새롭게 training 하는 경우 test/validiaton set의 loss/accuracy를 시각화하였다.
@@ -288,6 +294,9 @@ Adam optimizer는 stepsize가 gradient의 rescaling에 영향을 받지 않는 �
 
         plt.show()
 ```
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/38775259/84282952-5abbc580-ab75-11ea-86b6-bb26a1cf9755.png" width="400", height="300"></img>
+</div>
 
 ## 모델 테스트
 실제 test 데이터를 사용하여 모델을 test하였습니다. 크롤링한 트위터 데이터 100개와, 영화 평론 데이터 100개의 총 200개의 데이터를 test 데이터로 사용하였으며 각각의 결과를 csv로 저장하였습니다.
@@ -439,3 +448,6 @@ Attention mechanism을 적용 결과를 시각화하기 위해 matplotlib을 사
     plt.ylabel('Scores')
     plt.show()
 ```
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/38775259/84283188-ab332300-ab75-11ea-8eba-76d24e3de1ec.png" width="800", height="300"></img>
+</div>
