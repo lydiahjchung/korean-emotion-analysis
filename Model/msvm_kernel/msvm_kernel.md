@@ -188,68 +188,68 @@ k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.<br>
 각 nmt_api로 번역한 test set에 대한 예측 확률과 클래스 분포를 살펴 보았다.<br>
 
 ### Google_nmt_api test set**<br>
-predicted percentage distribution<br
-|Accuracy|Count|
-|:---|:---|
-|30%|87|
-|20%|50|
-|40%|49|
-|50%|10|
-|10%|4|
+- predicted percentage distribution<br
+    |Accuracy|Count|
+    |:---|:---|
+    |30%|87|
+    |20%|50|
+    |40%|49|
+    |50%|10|
+    |10%|4|
 
-predicted class distribution<br>
-|Label|Count|
-|:---|:---|
-|neutral|84|
-|disgust|84|
-|sadness|8|
-|happiness|7|
-|anger|6|
-|fear|6|
-|surprise|5|
+- predicted class distribution<br>
+    |Label|Count|
+    |:---|:---|
+    |neutral|84|
+    |disgust|84|
+    |sadness|8|
+    |happiness|7|
+    |anger|6|
+    |fear|6|
+    |surprise|5|
 
 ### Kakao_nmt_api test set**<br>
-predicted percentage distribution<br>
-|Accuracy|Count|
-|:---|:---|
-|30%|72|
-|20%|62|
-|40%|45|
-|50%|13|
-|10%|7|
-|60%|1|
+- predicted percentage distribution<br>
+    |Accuracy|Count|
+    |:---|:---|
+    |30%|72|
+    |20%|62|
+    |40%|45|
+    |50%|13|
+    |10%|7|
+    |60%|1|
 
-predicted class distribution<br>
-|Label|Count|
-|:---|:---|
-|disgust|85|
-|neutral|79|
-|happiness|11|
-|fear|8|
-|sadness|8|
-|surprise|6|
-|anger|3|
+- predicted class distribution<br>
+    |Label|Count|
+    |:---|:---|
+    |disgust|85|
+    |neutral|79|
+    |happiness|11|
+    |fear|8|
+    |sadness|8|
+    |surprise|6|
+    |anger|3|
 
 ### Papago_nmt_api test set**<br>
-predicted percentage distribution<br>
-|Accuracy|Count|
-|:---|:---|
-|30%|78|
-|40%|49|
-|20%|48|
-|50%|12|
-|10%|2|
+- predicted percentage distribution<br>
+    |Accuracy|Count|
+    |:---|:---|
+    |30%|78|
+    |40%|49|
+    |20%|48|
+    |50%|12|
+    |10%|2|
 
-predicted class distribution<br>
-|Label|Count|
-|:---|:---|
-|disgust|94|
-|neutral|68|
-|happiness|8|
-|sadness|8|
-|anger|4|
-|fear|4|
-|surprise|3|
+- predicted class distribution<br>
+    |Label|Count|
+    |:---|:---|
+    |disgust|94|
+    |neutral|68|
+    |happiness|8|
+    |sadness|8|
+    |anger|4|
+    |fear|4|
+    |surprise|3|
 
 ```python
     X_test = list(X_test)
