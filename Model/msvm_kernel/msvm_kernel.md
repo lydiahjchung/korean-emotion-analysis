@@ -161,7 +161,7 @@ SDGClassifier(loss hinge), LinearSVC, SVC 세 모델 중 가장 성능이 좋았
 ```
 
 ## k-fold
-k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.<br>
+k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.
 |K-fold Score|Score|
 |:---|:---|
 |3-fold score mean|0.849|
@@ -184,11 +184,11 @@ k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.<br>
     print('cross-val-score.mean \n{:.3f}'.format(scores.mean()))
 ```
 
-## Check the predicted percentage/class distribution**<br>
-각 nmt_api로 번역한 test set에 대한 예측 확률과 클래스 분포를 살펴 보았다.<br>
+## Check the predicted percentage/class distribution
+각 nmt_api로 번역한 test set에 대한 예측 확률과 클래스 분포를 살펴 보았다.
 
-### Google_nmt_api test set**<br>
-- predicted percentage distribution<br
+### Google_nmt_api test set
+- predicted percentage distribution
     |Accuracy|Count|
     |:---|:---|
     |30%|87|
@@ -197,7 +197,7 @@ k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.<br>
     |50%|10|
     |10%|4|
 
-- predicted class distribution<br>
+- predicted class distribution
     |Label|Count|
     |:---|:---|
     |neutral|84|
@@ -208,8 +208,8 @@ k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.<br>
     |fear|6|
     |surprise|5|
 
-### Kakao_nmt_api test set**<br>
-- predicted percentage distribution<br>
+### Kakao_nmt_api test set
+- predicted percentage distribution
     |Accuracy|Count|
     |:---|:---|
     |30%|72|
@@ -219,7 +219,7 @@ k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.<br>
     |10%|7|
     |60%|1|
 
-- predicted class distribution<br>
+- predicted class distribution
     |Label|Count|
     |:---|:---|
     |disgust|85|
@@ -230,8 +230,8 @@ k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.<br>
     |surprise|6|
     |anger|3|
 
-### Papago_nmt_api test set**<br>
-- predicted percentage distribution<br>
+### Papago_nmt_api test set
+- predicted percentage distribution
     |Accuracy|Count|
     |:---|:---|
     |30%|78|
@@ -240,7 +240,7 @@ k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.<br>
     |50%|12|
     |10%|2|
 
-- predicted class distribution<br>
+- predicted class distribution
     |Label|Count|
     |:---|:---|
     |disgust|94|
@@ -344,7 +344,7 @@ k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.<br>
 ```
 
 ## Trials
-아래는 성능 개선과 모델 별 성능 비교를 위해 사용한 코드이다.<br>
+아래는 성능 개선과 모델 별 성능 비교를 위해 사용한 코드이다.
 - Bagging<br>
 - LinearSVC<br>
 - SVC<br>
