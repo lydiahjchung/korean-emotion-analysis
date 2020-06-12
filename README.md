@@ -33,7 +33,10 @@
     * [Transformer](#transformer)
     * [Multiclass SVM](#multiclass-svm)
 5. [결과 분석](#결과-분석)
-
+    * [NMT API별 모델 분석 결과](NMT-API별-모델-분석-결과)
+    * [모델별 NMT API 분석 결과](모델별-NMT-API-분석-결과)
+    * [모델 분석 총평](#모델-분석-총평)
+    
 ## 데이터 크롤링
 - **Twitter 데이터 크롤링**<br>
     Tweeter Crawling API로 TWEEPY가 있으나 최근 7일 데이터만 수집할 수 있는 한계가 있다.<br>
@@ -408,7 +411,7 @@ trans_text = json_data.get('translated_text')
   - 트위터 데이터: 구글 NMT API - 0.24
   - 모든 데이터: 구글 NMT API - 0.28
   
-### NMT API별 모델 분석 총평 
+### 모델 분석 총평 
 - 영화 데이터: 구글 or 카카오 NMT API + mLSTM Attention - 0.39
 - 트위터 데이터: 구글 or 카카오 NMT API + SVM - 0.57
 - 총 데이터: 구글 NMT API + SVM - 0.46
