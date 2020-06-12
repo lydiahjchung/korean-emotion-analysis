@@ -60,7 +60,64 @@
       remove_twitterlink = re.sub(r"pic\S+", "", remove_hypterlink)         # 트위터링크 제거
       remove_retweet = re.sub(r"@\S+", "", remove_twitterlink)              # 트위터아이디 제거
     ```
+- **영화 데이터 전처리**<br>
+긍정과 부정으로 레이블링 되어있는 것을 제거하고 자음, 특수문자 그리고 불필요한 공백을 제거하였다. 
+    ```
+      #문자마다 마지막에 있는 0,1 값 제거 
+      data_train = [line.strip('0') for line in data_train]
+      data_train = [line.strip('1') for line in data_train]
+      data_train = [line.strip('\t') for line in data_train]
+      data_train = [line.replace('\t',' ' ) for line in data_train]
 
+      #자음 제거
+      data_train = [line.replace('ㅋ','' ) for line in data_train]
+      data_train = [line.replace('ㅜ','' ) for line in data_train]
+      data_train = [line.replace('ㅠ','' ) for line in data_train]
+      data_train = [line.replace('ㅎ','' ) for line in data_train]
+      data_train = [line.replace('ㄱ','' ) for line in data_train]
+      data_train = [line.replace('ㅉ','' ) for line in data_train]
+      data_train = [line.replace('ㅅ','' ) for line in data_train]
+      data_train = [line.replace('ㅂ','' ) for line in data_train]
+      data_train = [line.replace('ㅈ','' ) for line in data_train]
+      data_train = [line.replace('ㅊ','' ) for line in data_train]
+      data_train = [line.replace('ㅊ','' ) for line in data_train]
+      data_train = [line.replace('ㅏ','' ) for line in data_train]
+
+      #특수 문자 제거
+      data_train = [line.replace('*','' ) for line in data_train]
+      data_train = [line.replace(';','' ) for line in data_train]
+      data_train = [line.replace('♥','' ) for line in data_train]
+      data_train = [line.replace('/','' ) for line in data_train]
+      data_train = [line.replace('♡','' ) for line in data_train]
+      data_train = [line.replace('>','' ) for line in data_train]
+      data_train = [line.replace('<','' ) for line in data_train]
+      data_train = [line.replace('-','' ) for line in data_train]
+      data_train = [line.replace('_','' ) for line in data_train]
+      data_train = [line.replace('+','' ) for line in data_train]
+      data_train = [line.replace('=','' ) for line in data_train]
+      data_train = [line.replace('"','' ) for line in data_train]
+      data_train = [line.replace('~','' ) for line in data_train]
+      data_train = [line.replace('^','' ) for line in data_train]
+
+      #숫자 제거
+      data_train = [line.replace('0','' ) for line in data_train]
+      data_train = [line.replace('1','' ) for line in data_train]
+      data_train = [line.replace('2','' ) for line in data_train]
+      data_train = [line.replace('3','' ) for line in data_train]
+      data_train = [line.replace('4','' ) for line in data_train]
+      data_train = [line.replace('5','' ) for line in data_train]
+      data_train = [line.replace('6','' ) for line in data_train]
+      data_train = [line.replace('7','' ) for line in data_train]
+      data_train = [line.replace('8','' ) for line in data_train]
+      data_train = [line.replace('9','' ) for line in data_train]
+
+      #왼쪽 공백 제거
+      data_train = [line.lstrip( ) for line in data_train]
+
+      #오른쪽 공백 제거
+      data_train = [line.rstrip( ) for line in data_train]
+      
+    ```
 ## NMT API를 사용한 크롤링 데이터 번역
 - **Google NMT API**<br>
   Google NMT API는 **The Python Package Index(PyPI)** 에 올라와 있는 [**공식 API 사용 예제**](https://pypi.org/project/googletrans/)에 따라 구현하였다.
@@ -105,70 +162,6 @@
 - [**mLSTM + attention**](Model/mlstm_attention/mlstm_attention.md)
 - [**Transformer**](Model/transformer/transformer.md)
 - [**Multiclass SVM**](Model/msvm_kernel/msvm_kernel.md)
-  ```
-  from sklearn.model_selection import train_test_split
-  from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
-  import matplotlib.pyplot as plt
-  from sklearn.feature_extraction.text import CountVectorizer
-  from sklearn.feature_extraction.text import TfidfTransformer
-  from sklearn.linear_model import SGDClassifier
-  from sklearn.model_selection import cross_val_score, GridSearchCV
-  
-  df = pd.read_csv('/content/drive/Shared drives/데이터분석캡스톤디자인/데이터/라벨 데이터/labeled_final.txt',sep=';', names =['text','label'])
-  X = df.text
-  y = df.label
-  my_tags = ['anger','happiness','surprise', 'sadness', 'fear', 'neutral', 'disgust']
-  
-  cvect = CountVectorizer()
 
-  cvect_X_train = cvect.fit(X_train)
-  cvect_X_test = cvect.fit(X_test)
-  cvect.vocabulary_
-
-  cvect_X_train = cvect.transform(X_train).toarray()
-  cvect_X_test = cvect.transform(X_test).toarray()
-
-  tfid = TfidfTransformer()
-
-  tt_X_train = tfid.fit(cvect_X_train)
-  tt_X_test = tfid.fit(cvect_X_test)
-
-  tt_X_train = tfid.transform(cvect_X_train).toarray()
-  tt_X_test = tfid.transform(cvect_X_test).toarray()
-
-  from sklearn.calibration import CalibratedClassifierCV
-
-  sgd = SGDClassifier(loss='hinge', penalty='l2',alpha=1e-2, random_state=42, max_iter=10, tol=None)
-  sgd = sgd.fit(tt_X_train, y_train)
-
-  y_pred = sgd.predict(tt_X_test)
-
-  clf = CalibratedClassifierCV(sgd) 
-  clf.fit(tt_X_train, y_train)
-
-  y_proba = clf.predict_proba(tt_X_test)
-
-  print(clf.classes_)
-  
-  ```
 ## 모델 분석 결과
-  ```
-  #Accuracy Score 확인
-  print("train accuracy:", sgd.fit(X_train, y_train).score(X_train, y_train))
-  print('validation accuracy: %s' % accuracy_score(y_pred, y_test))
-  print(classification_report(y_test, y_pred,target_names=my_tags))
 
-  #확률 예측 값 & 예측 클래스 확인
-  X_test = list(X_test)
-  X_test
-  i = 0
-  
-  for i in range(len(X_test)):
-    score = np.max(y_proba[i,:])*100
-
-    idx = np.argmax(y_proba[i,:])
-    emotion = clf.classes_[idx]
-
-    if(score > 0.5):
-        print("[{}]는 {:.2f}% 확률로 {} 리뷰이지 않을까 추측해봅니다.\n".format(X_test[i], score, emotion))
-  ```
