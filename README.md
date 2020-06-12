@@ -171,7 +171,7 @@ trans_text = json_data.get('translated_text')
 각 NMT API별로 MSVM, mLSTM Attention, Transformer를 조합하여 분석한 결과의 상위 24개 데이터이다.
 <div align="center">
   <img src="https://user-images.githubusercontent.com/38775259/84489650-f7e53e00-acdc-11ea-824c-562be1a4a2b9.png" width="1000", height="400"></img>
-</div>
+</div><br>
 
 <html lang="ko">
   <head>
@@ -276,7 +276,7 @@ trans_text = json_data.get('translated_text')
 각 모델별로 Google, Kakao, Papago NMT API를 조합하여 분석한 결과의 상위 24개 데이터이다.
 <div align="center">
   <img src="https://user-images.githubusercontent.com/38775259/84489534-ce2c1700-acdc-11ea-8efb-29ca974db2ed.png" width="1000", height="400"></img>
-</div>
+</div><br>
 
 <html lang="ko">
   <head>
