@@ -222,12 +222,11 @@ x_val = keras.preprocessing.sequence.pad_sequences(x_val, maxlen=max_len)
 ### Implementing Layers
 Three layers are implemented to make a Transformer model:
 - Multi Head Self Attention Layer
-- Transformer Block Layers
 - Embedding Layer
+- Transformer Block Layers
 
 #### Multi Head Self Attention Layer
-Transformer uses multi-headed self attention mechanism for the self-attention layer.
-1. Expands the capability of focusing on different positions.
+Transformer uses multi-headed self attention mechanism for the self-attention layer. With multiple heads calculating attention, it expands the capability of focusing on different positions so that many different subspaces of the input are represented.
 ```python
 class MultiHeadSelfAttention(layers.Layer):
     def __init__(self, embed_dim, num_heads=8):
@@ -284,7 +283,27 @@ class MultiHeadSelfAttention(layers.Layer):
         return output
 ```
 
+#### Embedding Layer
+Transformer additionally uses positional embeddings. Positional embedding accounts the order of the words in the input sentence.
+
+```python
+class TokenAndPositionEmbedding(layers.Layer):
+    def __init__(self, maxlen, vocab_size, emded_dim):
+        super(TokenAndPositionEmbedding, self).__init__()
+        self.token_emb = layers.Embedding(input_dim=vocab_size, output_dim=emded_dim)
+        self.pos_emb = layers.Embedding(input_dim=maxlen, output_dim=emded_dim)
+
+    def call(self, x):
+        maxlen = tf.shape(x)[-1]
+        positions = tf.range(start=0, limit=maxlen, delta=1)
+        positions = self.pos_emb(positions)
+        x = self.token_emb(x)
+        return x + positions
+```
+
 #### Transformer Block Layer
+Implementing the transformer structure. Each sublayers are connected by residual connections with layer normalization.
+
 ```python
 class TransformerBlock(layers.Layer):
     def __init__(self, embed_dim, num_heads, ff_dim, rate=0.1):
@@ -305,24 +324,6 @@ class TransformerBlock(layers.Layer):
         ffn_output = self.ffn(out1)
         ffn_output = self.dropout2(ffn_output, training=training)
         return self.layernorm2(out1 + ffn_output)
-```
-
-#### Embedding Layer
-Transformer additionally uses positional embeddings. Positional embedding accounts the order of the words in the input sentence.
-
-```python
-class TokenAndPositionEmbedding(layers.Layer):
-    def __init__(self, maxlen, vocab_size, emded_dim):
-        super(TokenAndPositionEmbedding, self).__init__()
-        self.token_emb = layers.Embedding(input_dim=vocab_size, output_dim=emded_dim)
-        self.pos_emb = layers.Embedding(input_dim=maxlen, output_dim=emded_dim)
-
-    def call(self, x):
-        maxlen = tf.shape(x)[-1]
-        positions = tf.range(start=0, limit=maxlen, delta=1)
-        positions = self.pos_emb(positions)
-        x = self.token_emb(x)
-        return x + positions
 ```
 
 ### Training Transformer
