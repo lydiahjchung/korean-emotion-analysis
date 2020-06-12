@@ -3,7 +3,7 @@
 6가지 감정 카테고리는 **anger, happiness, neutral, surpirse, sadness, fear, dissgust**로 이루어져 있습니다.
 아래 코드는 **google colab**에서 작성되었으며 repository에 업로드 되어있는 python 파일은 아래와 다를 수 있음을 밝힙니다.
 
-```
+```python
     import numpy as np 
     import pandas as pd 
     import os.path
@@ -31,7 +31,7 @@
 라벨링된 데이터는 트위터 데이터를 포함하고 있기 때문에 용도에 맞게 데이터를 **정제** 및 **정규화** 해야 합니다. 트위터 아이디 및 링크는 분석 용도에 적합하지 않기 때문에 **정제** 작업을 통해 제거해야 하며, 영어의 표현 방식을 통일하기 위해 데이터 **정규화** 과정을 거쳐야합니다.<br>
 - **정제(Cleaning)**: 노이즈 데이터 제거
 - **정규화(Normalization)**: 표현 형식 통일
-```
+```python
     import re
 
     # 데이터 정규화 및 정제를 위한 함수
@@ -79,7 +79,7 @@
 다음으로 **불용어 처리**는 문장에서 유의미한 단어를 선택하고 필요 없는 것들은 제거하는 작업을 의미합니다. 예를 들어 문장에서 I, my, me는 자주 등장하는 단어이지만 문장에 자연어 처리 분석에 큰 도움이 되지 않습니다. 이렇게 자주 등장하지만 분석에 도움이 되지 않는 단어들을 제거하는 작업을 불용어 처리라고 합니다.
 <br>
 해당 프로젝트에서는 nltk 패키지를 사용하여 **토큰화**, **불용어 처리**, **어간 추출**을 진행하였다.
-```
+```python
     import nltk
     from nltk.stem.snowball import SnowballStemmer
     from string import punctuation 
@@ -98,7 +98,7 @@
         text = word_tokenize(text)  # 데이터 토큰화
         return [english_stemmer.stem(word) for word in text if word not in _stopwords]  # 어간 추출 및 불용어 처리
 ```
-```
+```python
     twitter = []        # 트위터 데이터 초기화
     label = []          # 라벨링 데이터 초기화
 
@@ -121,7 +121,7 @@
 
 ### 3. Vocabulary 사전 구성
 정수 인코딩을 사용하기 위해 토큰화된 단어를 가지고 Vocabulary를 구성한다. 여기서 Vocabulary란 단수, 복수와 같은 형태는 다르지만 의미는 같은 단어를 같은 단어로 묶어 주는 기법을 의미합니다. 예를 들어 computers는 computer와 같은 단어로 간주합니다. 또한 단어의 빈도 순서대로 정렬하여 인코딩을 하기 위하여 nltk의 FrqDist 클래스를 사용하였습니다.
-```
+```python
     # Vocabulary 생성 함수
     def build_vocab(data):
         all_words = []
@@ -145,7 +145,7 @@
 
 ### 4. 정수 인코딩
 컴퓨터는 기본적으로 텍스트 데이터 보다 숫자 데이터를 훨씬 더 빠르게 처리할 수 있습니다. 따라서 자연어 처리에서는 앞서 만든 Vocabulary를 정수로 변환하는 기법을 사용합니다. 인덱스를 부여하는 방법에는 여러 가지 방법이 있지만 앞서 Vocabulary를 빈도수로 정렬하였기 때문에 빈도수를 기준으로 인덱싱을 진행하였습니다.
-```
+```python
     # 감정 라벨
     emotion = ['happiness', 'sadness', 'anger', 'fear', 'surprise', 'neutral', 'disgust']
 
@@ -159,7 +159,7 @@
 ```
 ### 5. 데이터 분리
 test 데이터 셋과 train 데이터 셋을 위하여 데이터 분리를 진행했습니다. 현재 데이터가 빈도 수에 따라 정렬되어 있기 때문에 random.shuffle을 통해 순서를 바꿔준 후 데이터를 분리하였습니다.
-```
+```python
     import random
     import keras
     import numpy as np
@@ -199,7 +199,7 @@ test 데이터 셋과 train 데이터 셋을 위하여 데이터 분리를 진�
 Sparse categorical crossentropy의 경우 다중 분류 손실함수로, categorical crossentropy와는 다르게 one-hot 인코딩을 할 필요가 없습니다. 현재 정수 타입 인코딩을 진행하였기 때문에 sparse categorical crossentropy를 손실함수로 사용하였습니다.
 - **Optimizer**: Adam
 Adam optimizer는 stepsize가 gradient의 rescaling에 영향을 받지 않는 장점을 가지고 있습니다. 즉, gradient가 커져도 bound가 되어 있어서 어떠한 objective function을 사용한다 하더라도 안정적으로 최적화를 할 수 있습니다. 따라서 optimizer로 Adam method를 사용하였습니다.
-```
+```python
     import keras
 
     embedding_dim = 100 # The dimension of word embeddings
@@ -253,7 +253,7 @@ Adam optimizer는 stepsize가 gradient의 rescaling에 영향을 받지 않는 �
 
 ## 모델 훈련
 앞서 정의한 모델에 test/train 데이터를 활용하여 모델을 훈련시켰습니다. Overfitting을 방지하기 위하여 keras의 EarlyStopping을 사용하였습니다. 모델이 이미 존재하는 경우 훈련된 모델을 불러왔으며, 새롭게 training 하는 경우 test/validiaton set의 loss/accuracy를 시각화하였다.
-```
+```python
     import os.path
     from keras.models import load_model
     from keras.callbacks import EarlyStopping
@@ -300,7 +300,7 @@ Adam optimizer는 stepsize가 gradient의 rescaling에 영향을 받지 않는 �
 
 ## 모델 테스트
 실제 test 데이터를 사용하여 모델을 test하였습니다. 크롤링한 트위터 데이터 100개와, 영화 평론 데이터 100개의 총 200개의 데이터를 test 데이터로 사용하였으며 각각의 결과를 csv로 저장하였습니다.
-```
+```python
     def test_preprocess(platform):
         with open("{}_final_test.txt".format(platform)) as f:
             testdata = f.readlines()
@@ -354,7 +354,7 @@ Adam optimizer는 stepsize가 gradient의 rescaling에 영향을 받지 않는 �
 
     pred
 ```
-```
+```python
     # CSV 저장
     pred.to_csv("{}_predicted.csv".format(platform),
                     sep=';',
@@ -364,20 +364,20 @@ Adam optimizer는 stepsize가 gradient의 rescaling에 영향을 받지 않는 �
 
 ## Attention 결과 출력
 Attention mechanism을 적용 결과를 시각화하기 위해 matplotlib을 사용하였습니다. Test 데이터에서 랜덤하게 문장 하나를 선택하여 결과값을 출력하였습니다.
-```
+```python
     # Re-create the model to get attention vectors as well as label prediction
     model_with_attentions = keras.Model(inputs=model.input,
                                         outputs=[model.output, 
                                                 model.get_layer('attention_vec').output])
 ```
-```
+```python
     emotion = ['happiness', 'sadness', 'anger', 'fear', 'surprise', 'neutral', 'disgust']
     label2id = dict(zip(emotion, [0, 1, 2, 3, 4, 5, 6]))
     id2label = dict(zip([0, 1, 2, 3, 4, 5, 6], emotion))
     sample_text = pre_to_tok(random.choice(dataset["text"].values))
     print(sample_text)
 ```
-```
+```python
     import random
     import math
 
