@@ -239,7 +239,7 @@ trans_text = json_data.get('translated_text')
           <td align="center">0.39</td>
           <td align="center">0.32</td>
           <td align="center">0.31</td>
-          <td style="background-color:#FF0000", align="center">0.39</td>
+          <td style="background-color:yellow", align="center">0.39</td>
           <td align="center">0.29</td>
           <td align="center">0.34</td>
           <td align="center">0.36</td>
