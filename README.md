@@ -299,7 +299,7 @@ trans_text = json_data.get('translated_text')
           <th width="10%">파파고</th>
           <th width="10%">구글</th>
           <th width="10%">카카오</th>
-          <th width="10%">파파고</th>
+          <th width="10%">파파1</th>
         </tr>
         <tr>
           <th>Movie</th>
@@ -342,7 +342,7 @@ trans_text = json_data.get('translated_text')
           <td align="center">0.35</td>
           <td align="center">0.31</td>
           <td align="center">0.34</td>
-          <td align="center">0.39</td>
+          <td bgcolor="yellow" align="center">0.39</td>
           <td align="center">0.39</td>
           <td align="center">0.36</td>
           <td align="center">0.32</td>
