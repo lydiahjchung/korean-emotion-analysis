@@ -172,6 +172,106 @@ trans_text = json_data.get('translated_text')
 <div align="center">
   <img src="https://user-images.githubusercontent.com/38775259/84489650-f7e53e00-acdc-11ea-824c-562be1a4a2b9.png" width="1000", height="400"></img>
 </div>
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <table>
+        <tr>
+          <th colspan="1" rowspan="2" width="10%">라벨</th>
+          <th colspan="3" width="30%">구글</th>
+          <th colspan="3" width="30%">카카오</th>
+          <th colspan="3" width="30%">파파고</th>
+        </tr>
+        <tr>
+          <th width="10%">SVM</th>
+          <th width="10%">MLSTM</th>
+          <th width="10%">TF</th>
+          <th width="10%">SVM</th>
+          <th width="10%">MLSTM</th>
+          <th width="10%">TF</th>
+          <th width="10%">SVM</th>
+          <th width="10%">MLSTM</th>
+          <th width="10%">TF</th>
+        </tr>
+        <tr>
+          <th>Movie</th>
+          <td align="center">35</td>
+          <td align="center">39</td>
+          <td align="center">32</td>
+          <td align="center">31</td>
+          <td align="center">39</td>
+          <td align="center">29</td>
+          <td align="center">34</td>
+          <td align="center">36</td>
+          <td align="center">27</td>
+        </tr>
+        <tr>
+          <th>Twitter</th>
+          <td align="center">57</td>
+          <td align="center">34</td>
+          <td align="center">24</td>
+          <td align="center">57</td>
+          <td align="center">32</td>
+          <td align="center">16</td>
+          <td align="center">51</td>
+          <td align="center">37</td>
+          <td align="center">16</td>
+        </tr>
+        <tr>
+          <th>Total</th>
+          <td align="center">92</td>
+          <td align="center">73</td>
+          <td align="center">56</td>
+          <td align="center">88</td>
+          <td align="center">71</td>
+          <td align="center">45</td>
+          <td align="center">85</td>
+          <td align="center">73</td>
+          <td align="center">43</td>
+        </tr>
+        <tr>
+          <th>M_Accuracy</th>
+          <td align="center">0.35</td>
+          <td align="center">0.39</td>
+          <td align="center">0.32</td>
+          <td align="center">0.31</td>
+          <td align="center">0.39</td>
+          <td align="center">0.29</td>
+          <td align="center">0.34</td>
+          <td align="center">0.36</td>
+          <td align="center">0.27</td>
+        </tr>
+        <tr>
+          <th>T_Accuracy</th>
+          <td align="center">0.57</td>
+          <td align="center">0.34</td>
+          <td align="center">0.24</td>
+          <td align="center">0.57</td>
+          <td align="center">0.32</td>
+          <td align="center">0.16</td>
+          <td align="center">0.51</td>
+          <td align="center">0.37</td>
+          <td align="center">0.16</td>
+        </tr>
+        <tr>
+          <th>Total Accuracy</th>
+          <td align="center">0.46</td>
+          <td align="center">0.365</td>
+          <td align="center">0.28</td>
+          <td align="center">0.44</td>
+          <td align="center">0.355</td>
+          <td align="center">0.225</td>
+          <td align="center">0.425</td>
+          <td align="center">0.365</td>
+          <td align="center">0.215</td>
+        </tr>
+    </table>
+  </body>
+</html>
+
 
 ### 모델별 NMT API 분석 결과
 각 모델별로 Google, Kakao, Papago NMT API를 조합하여 분석한 결과의 상위 24개 데이터이다.
