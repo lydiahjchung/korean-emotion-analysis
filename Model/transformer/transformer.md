@@ -356,6 +356,10 @@ model.summary()
 </div>
 
 #### Training and Evaluating
+For optimizer and loss function, ***adam*** and **sparse_categorical_crossentropy** are used.
+- adam: According to Kingma et al., 2014, the method is "computationally efficient, has little memory requirement, invariant to diagonal rescaling of gradients, and is well suited for problems that are large in terms of data/parameters".
+- sparse_categorical_crossentropy: Without using one-hot representations for multi label classes, this loss function enables multi label classification with labels provided as integers. As the loss function calculates floating point values for each classes, the maximum value of each output represents the predicted classified label.
+
 ```python
 from tensorflow.keras.callbacks import EarlyStopping
 early_stopping = EarlyStopping()
