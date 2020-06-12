@@ -342,6 +342,9 @@ model = keras.Model(inputs=inputs, outputs=outputs)
 ```python
 model.summary()
 ```
+<div align='center'>
+<img width="567" alt="Screen Shot 2020-06-12 at 5 12 55 PM" src="https://user-images.githubusercontent.com/38764035/84480936-493b0080-acd0-11ea-9aee-d03457c9739b.png"></img>
+</div>
 
 #### Training and Evaluating
 ```python
@@ -352,6 +355,9 @@ history = model.fit(
     x_train, y_train, batch_size=32, epochs=10, validation_data=(x_val, y_val), callbacks=[early_stopping]
 )
 ```
+<div align='center'>
+<img width="1115" alt="Screen Shot 2020-06-12 at 5 13 29 PM" src="https://user-images.githubusercontent.com/38764035/84481283-d3836480-acd0-11ea-8c31-6d5546fe05f6.png"></img>
+</div>
 
 ### Predicting label classification of the test data set
 
