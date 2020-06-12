@@ -207,7 +207,12 @@ k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.
     |anger|6|
     |fear|6|
     |surprise|5|
-
+<div display="inline-block">
+bb
+</div>
+aa
+<div display="inline-block">
+</div>
 ### Kakao_nmt_api test set
 - predicted percentage distribution
     |Accuracy|Count|
