@@ -166,7 +166,15 @@ trans_text = json_data.get('translated_text')
 - [**Multiclass SVM**](Model/msvm_kernel/msvm_kernel.md)
 
 ## 모델 분석 결과
+### NMT API별 모델 분석 결과
+각 NMT API별로 MSVM, mLSTM Attention, Transformer를 조합하여 분석한 결과의 상위 24개 데이터이다.
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/38775259/84488700-89ec4700-acdb-11ea-8e31-0304c6a73959.png" width="1000", height="400"></img>
+  <img src="https://user-images.githubusercontent.com/38775259/84489650-f7e53e00-acdc-11ea-824c-562be1a4a2b9.png" width="1000", height="400"></img>
+</div>
+
+### 모델별 NMT API 분석 결과
+각 모델별로 Google, Kakao, Papago NMT API를 조합하여 분석한 결과의 상위 24개 데이터이다.
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/38775259/84489534-ce2c1700-acdc-11ea-8efb-29ca974db2ed.png" width="1000", height="400"></img>
 </div>
 
