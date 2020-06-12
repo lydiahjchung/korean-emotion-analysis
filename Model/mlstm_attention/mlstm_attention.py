@@ -157,10 +157,10 @@ model.summary()
 # 4. 모델 훈련
 #------------------------------------------------------------------------------------------#
 # 현재 경로
-path = current_path.data_path + "/lstm_attention_v1_trained.h5"
+model_path = "lstm_attention_v1_trained.h5"
 
 # pre-trained 데이터가 있는지 확인
-if os.path.isfile(path):
+if os.path.isfile(model_path):
   print("Trained model already exists")
   model = load_model('lstm_attention_v1_trained.h5')
 else:
@@ -174,54 +174,55 @@ else:
   print('## evaluation loss and_metrics ##')
   print(loss_and_metrics)
 
-  # 결과 시각화
-  fig, loss_ax = plt.subplots()
-  acc_ax = loss_ax.twinx()
+  # # 결과 시각화
+  # fig, loss_ax = plt.subplots()
+  # acc_ax = loss_ax.twinx()
 
-  loss_ax.plot(hist.history['loss'], 'y', label='train loss')
-  loss_ax.plot(hist.history['val_loss'], 'r', label='val loss')
-  loss_ax.set_xlabel('epoch')
-  loss_ax.set_ylabel('loss')
-  loss_ax.legend(loc='upper left')
+  # loss_ax.plot(hist.history['loss'], 'y', label='train loss')
+  # loss_ax.plot(hist.history['val_loss'], 'r', label='val loss')
+  # loss_ax.set_xlabel('epoch')
+  # loss_ax.set_ylabel('loss')
+  # loss_ax.legend(loc='upper left')
 
-  acc_ax.plot(hist.history['accuracy'], 'b', label='train acc')
-  acc_ax.plot(hist.history['val_accuracy'], 'g', label='val acc')
-  acc_ax.set_ylabel('accuracy')
-  acc_ax.legend(loc='upper right')
+  # acc_ax.plot(hist.history['accuracy'], 'b', label='train acc')
+  # acc_ax.plot(hist.history['val_accuracy'], 'g', label='val acc')
+  # acc_ax.set_ylabel('accuracy')
+  # acc_ax.legend(loc='upper right')
 
-  plt.show()
+  # plt.show()
 
 #------------------------------------------------------------------------------------------#
 # 5. 모델 테스트
 #------------------------------------------------------------------------------------------#
 # NMT API 선택
-platform_list = ["kakao", "google", "papago"]
-platform = "kakao"
-vector_result, final_result = PreProcess().test_preprocess(platform, sorted_keys, max_words)
-preds = model.predict(vector_result)
+platform_list = ["/kakao", "/google", "/papago"]
 
-# label, sentence 데이터 설정
-lbl = list(model.predict(vector_result).argmax(axis=-1))
-label, probs, i = [], [], 0
-for each in lbl:
-  label.append(emotion[each])
-for each in preds:
-  probs.append(max(each))
-  i += 1
+for platform in platform_list:
+  vector_result, final_result = PreProcess().test_preprocess(platform, sorted_keys, max_words)
+  preds = model.predict(vector_result)
 
-# 데이터 프레임으로 데이터 출력
-import pandas as pd
-pred = pd.DataFrame(
-    {'sentence': final_result,
-     'label': label,
-     'prob' : probs
-    })
+  # label, sentence 데이터 설정
+  lbl = list(model.predict(vector_result).argmax(axis=-1))
+  label, probs, i = [], [], 0
+  for each in lbl:
+    label.append(emotion[each])
+  for each in preds:
+    probs.append(max(each))
+    i += 1
 
-# 데이터 프레임 CSV로 저장
-pred.to_csv(current_path.result_path + "/{}_mlstm_attention.csv".format(platform),
-                  sep=';',
-                  columns = ['sentence', 'label', 'prob'],
-                  index = False)
+  # 데이터 프레임으로 데이터 출력
+  import pandas as pd
+  pred = pd.DataFrame(
+      {'sentence': final_result,
+      'label': label,
+      'prob' : probs
+      })
+
+  # 데이터 프레임 CSV로 저장
+  pred.to_csv(current_path.result_path + "/{}_mlstm_attention.csv".format(platform),
+                    sep=';',
+                    columns = ['sentence', 'label', 'prob'],
+                    index = False)
 #------------------------------------------------------------------------------------------#
 # 7. Attention 결과 출력
 #------------------------------------------------------------------------------------------#

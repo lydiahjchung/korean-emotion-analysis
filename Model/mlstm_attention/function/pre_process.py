@@ -7,10 +7,12 @@ import re
 import keras
 import nltk
 
+import function.Constant as current_path
+
 class PreProcess:
     def __init__(self):
-        nltk.download('punkt')
-        nltk.download('stopwords')
+        # nltk.download('punkt')
+        # nltk.download('stopwords')
 
         self.english_stemmer = SnowballStemmer('english')
         temps = ['``', "''", '…', '—', '~~', '"', '..', '“', '-_____-', 'm̶̲̅ε̲̣', 'rt', '=/', '»']
@@ -70,7 +72,7 @@ class PreProcess:
         return [self.english_stemmer.stem(word) for word in text if word not in self._stopwords]  # 어간 추출 및 불용어 처리
 
     def test_preprocess(self, platform, keys_sorted, max_len):
-        with open("/Data/{}_final_test.txt".format(platform)) as f:
+        with open(current_path.data_path + "/{}_final_test.txt".format(platform), encoding='utf8') as f:
             testdata = f.readlines()
 
         final_test, processed_test = [], []
