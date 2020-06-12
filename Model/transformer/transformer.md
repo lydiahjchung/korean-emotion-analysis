@@ -220,8 +220,14 @@ x_val = keras.preprocessing.sequence.pad_sequences(x_val, maxlen=max_len)
 ```
 
 ### Implementing Layers
+Three layers are implemented to make a Transformer model:
+- Multi Head Self Attention Layer
+- Transformer Block Layers
+- Embedding Layer
 
 #### Multi Head Self Attention Layer
+Transformer uses multi-headed self attention mechanism for the self-attention layer.
+1. Expands the capability of focusing on different positions.
 ```python
 class MultiHeadSelfAttention(layers.Layer):
     def __init__(self, embed_dim, num_heads=8):
@@ -302,6 +308,8 @@ class TransformerBlock(layers.Layer):
 ```
 
 #### Embedding Layer
+Transformer additionally uses positional embeddings. Positional embedding accounts the order of the words in the input sentence.
+
 ```python
 class TokenAndPositionEmbedding(layers.Layer):
     def __init__(self, maxlen, vocab_size, emded_dim):
