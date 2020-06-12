@@ -173,7 +173,6 @@ trans_text = json_data.get('translated_text')
   <img src="https://user-images.githubusercontent.com/38775259/84489650-f7e53e00-acdc-11ea-824c-562be1a4a2b9.png" width="1000", height="400"></img>
 </div>
 
-<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="utf-8">
@@ -279,7 +278,6 @@ trans_text = json_data.get('translated_text')
   <img src="https://user-images.githubusercontent.com/38775259/84489534-ce2c1700-acdc-11ea-8efb-29ca974db2ed.png" width="1000", height="400"></img>
 </div>
 
-<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="utf-8">
