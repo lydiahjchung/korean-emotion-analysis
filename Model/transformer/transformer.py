@@ -93,6 +93,7 @@ if __name__ == "__main__":
     google_processed = preprocess.preprocessing_test(google_input)
     kakao_processed = preprocess.preprocessing_test(kakao_input)
     papago_processed = preprocess.preprocessing_test(papago_input)
+    print(len(kakao_input), len(papago_input))
 
     # pad each processed data sets
     google_processed = splitting.padding(google_processed)
@@ -112,4 +113,8 @@ if __name__ == "__main__":
     # saving each outputs as csv
     preprocess.output_csv(google_sentence, google_label, google_probability, 'google')
     preprocess.output_csv(kakao_sentence, kakao_label, kakao_probability, 'kakao')
-    preprocess.output_csv(papago_sentence, papago_label, papago_probability, 'papago')
+    print(len(kakao_sentence), len(kakao_label), len(kakao_probability))
+    print(len(papago_processed))
+    print(len(papago_predict))
+    print(len(papago_sentence), len(papago_label), len(papago_probability))
+    #preprocess.output_csv(papago_sentence, papago_label, papago_probability, 'papago')
