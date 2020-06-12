@@ -70,7 +70,7 @@ class PreProcess:
         return [self.english_stemmer.stem(word) for word in text if word not in self._stopwords]  # 어간 추출 및 불용어 처리
 
     def test_preprocess(self, platform, keys_sorted, max_len):
-        with open("{}_final_test.txt".format(platform)) as f:
+        with open("/Data/{}_final_test.txt".format(platform)) as f:
             testdata = f.readlines()
 
         final_test, processed_test = [], []

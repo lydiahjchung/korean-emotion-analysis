@@ -11,6 +11,8 @@ from collections import Counter
 from keras.models import load_model
 from keras.callbacks import EarlyStopping
 
+import matplotlib.pyplot as plt; plt.rcdefaults()
+from IPython.core.display import display, HTML
 
 # 모듈 함수
 import function.Constant as current_path
@@ -154,11 +156,6 @@ model.summary()
 #------------------------------------------------------------------------------------------#
 # 4. 모델 훈련
 #------------------------------------------------------------------------------------------#
-import os.path
-from keras.models import load_model
-from keras.callbacks import EarlyStopping
-import matplotlib.pyplot as plt
-
 # 현재 경로
 path = current_path.data_path + "/lstm_attention_v1_trained.h5"
 
@@ -198,6 +195,7 @@ else:
 # 5. 모델 테스트
 #------------------------------------------------------------------------------------------#
 # NMT API 선택
+platform_list = ["kakao", "google", "papago"]
 platform = "kakao"
 vector_result, final_result = PreProcess().test_preprocess(platform, sorted_keys, max_words)
 preds = model.predict(vector_result)
@@ -219,7 +217,11 @@ pred = pd.DataFrame(
      'prob' : probs
     })
 
-print(pred)
+# 데이터 프레임 CSV로 저장
+pred.to_csv(current_path.result_path + "/{}_mlstm_attention.csv".format(platform),
+                  sep=';',
+                  columns = ['sentence', 'label', 'prob'],
+                  index = False)
 #------------------------------------------------------------------------------------------#
 # 7. Attention 결과 출력
 #------------------------------------------------------------------------------------------#
@@ -272,11 +274,6 @@ for token, attention_score in zip(tokenized_sample, attentions[0][-len(tokenized
 
 
 # VISUALIZATION
-import matplotlib.pyplot as plt; plt.rcdefaults()
-import numpy as np
-import matplotlib.pyplot as plt
-from IPython.core.display import display, HTML
-
 def rgb_to_hex(rgb):
     return '#%02x%02x%02x' % rgb
     
