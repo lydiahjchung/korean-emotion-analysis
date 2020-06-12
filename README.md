@@ -272,10 +272,8 @@ trans_text = json_data.get('translated_text')
   </body>
 </html>
 
-
 ### 모델별 NMT API 분석 결과
 각 모델별로 Google, Kakao, Papago NMT API를 조합하여 분석한 결과의 상위 24개 데이터이다.
 <div align="center">
   <img src="https://user-images.githubusercontent.com/38775259/84489534-ce2c1700-acdc-11ea-8efb-29ca974db2ed.png" width="1000", height="400"></img>
 </div>
-
