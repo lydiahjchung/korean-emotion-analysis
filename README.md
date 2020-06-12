@@ -171,6 +171,7 @@ trans_text = json_data.get('translated_text')
 각 NMT API별로 MSVM, mLSTM Attention, Transformer를 조합하여 분석한 결과의 상위 24개 데이터이다.
 <div align="center">
   <img src="https://user-images.githubusercontent.com/38775259/84489650-f7e53e00-acdc-11ea-824c-562be1a4a2b9.png" width="1000", height="400"></img>
+  
 </div>
 <!doctype html>
 <html lang="ko">
@@ -238,7 +239,7 @@ trans_text = json_data.get('translated_text')
           <td align="center">0.39</td>
           <td align="center">0.32</td>
           <td align="center">0.31</td>
-          <td align="center">0.39</td>
+          <td style="background-color:#FF0000", align="center">0.39</td>
           <td align="center">0.29</td>
           <td align="center">0.34</td>
           <td align="center">0.36</td>
