@@ -39,14 +39,15 @@
     Tweeter Crawling API로 TWEEPY가 있으나 최근 7일 데이터만 수집할 수 있는 한계가 있다.<br>
     그 이전의 데이터를 수집하고 싶으면 Premium-Api를 구매해야 하는데 500request에 $149/월 이다.<br>
     따라서 오픈소스로 많이 사용하는 twitterscraper package를 사용하려고 한다.
-  ```python
+ ```python
     try:
         from twitterscraper.query import query_tweets
         from twitterscraper.tweet import Tweet
     except:
         !pip install twitterscraper
         from twitterscraper.query import query_tweets
-        from twitterscr  ```
+        from twitterscr  
+  ```
   데이터는 **총선**을 키워드로 검색하였다.
   ```python
   list_of_tweets = query_tweets('총선', begindate=datetime.date(2020,4,1), 
