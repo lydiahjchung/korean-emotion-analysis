@@ -17,7 +17,7 @@ For specified details of each steps, read the following section: ***Using Google
 ## Using Google Colab
 
 Detailed order of the implementation process is delineated below.
-This code is limitting its output to *Kakao NMT translated data set*. For other outputs using Google or Papago NMT, alter **{NMT API NAME}** in section **Predicting label classification of the test data set**.
+This code is limitting its output to *Kakao NMT translated data set*. For other outputs using Google or Papago NMT, alter **NMT API NAME** in section **Predicting label classification of the test data set**.
 
 ### Data Preprocessing
 
