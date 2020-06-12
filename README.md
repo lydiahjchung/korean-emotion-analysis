@@ -15,7 +15,7 @@
 여러 카테고리의 감성 분석 결과를 활용하여 여론조사를 대체하고 있는 미국과는 다르게 한국은 한정적인 분야에서만 감성 분석 결과를 사용하고 있다. 
 <br><br>
 한국어 문장을 emotion analysis를 통해 **7가지 감정 카테고리(happy, sad, anger, disgust, surprise, fear, neutral) classification**을 진행하는 것을 목표로 한다. 
-한국어 데이터 수집하여 세 가지 NMT API **\(구글, 파파고, 카카오\)**를 통해 **영문 번역 데이터**를 제작하고 그 결과를 모델에 대입해본다. 
+한국어 데이터 수집하여 세 가지 NMT API **- 구글, 파파고, 카카오**를 통해 **영문 번역 데이터**를 제작하고 그 결과를 모델에 대입해본다. 
 **mLSTM, Transformer, Multi-class SVM kernels** 모델에 이미 공개된 labeled 된 영문 데이터를 training data를 사용하여 multi-category classification emotion analysis 모델을 구축한다.
 이후 총 아홉 가지의 데이터-모델 조합의 output을 비교하고, 최적의 조합을 제시한다.
 
