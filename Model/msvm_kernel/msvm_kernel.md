@@ -4,7 +4,7 @@
 **anger, happiness, surprise, sadness, fear, neutral, disgust**
 
 **Load train set**
-```
+```python
     import os
     import logging
     from numpy import random
@@ -34,7 +34,7 @@
 **Final Preprocessing**<br>
 최종적으로 twitter dataset의 특수문자를 제거하였다.
 
-```
+```python
     df_X = list(X_train)
 
     if any("@" in s for s in df_X):
@@ -75,7 +75,7 @@
 
 **Visualize label distribution**<br>
 레이블 분포가 균일한지 시각화를 통해 확인하였다.
-```
+```python
     #레이블 분포 확인
     df_train['label'].value_counts()
 
@@ -86,7 +86,7 @@
 ```
 
 **Load test set (should load 1 of 3, one by one)**
-```
+```python
     # Test set 불러오기
     #Google
     df_test = pd.read_csv('/content/drive/Shared drives/데이터분석캡스톤디자인/데이터/최종 test 데이터/google_final_test.txt',sep=';', names =['text','label'])
@@ -106,7 +106,7 @@
 
 **Let's train the model!**<br>
 SDGClassifier(loss hinge), LinearSVC, SVC 세 모델 중 가장 성능이 좋았던 SDGClassifier로 학습을 시켰다.
-```
+```python
     # SGDClassifier - loss = 'hinge'
     cvect = CountVectorizer()
 
@@ -144,7 +144,7 @@ k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.<br>
 3-fold score mean: 0.849<br>
 5-fold score mean: 0.856<br>
 10-fold score mean: 0.862<br>
-```
+```pyhton
     #3-fold
     scores = cross_val_score(sgd,  df.text, df.label, cv=3)
     print('cross-val-score \n{}'.format(scores))
@@ -216,7 +216,7 @@ anger         4<br>
 fear          4<br>
 surprise      3<br>
 
-```
+```python
     X_test = list(X_test)
     print(X_test)
 
@@ -296,7 +296,7 @@ surprise      3<br>
 ```
 
 **Save the result**<br>
-```
+```python
     #결과 저장
     df_X_test = pd.DataFrame({'text':X_test})
     df_look = pd.DataFrame({'prob':look})
@@ -314,7 +314,7 @@ surprise      3<br>
 - LinearSVC<br>
 - SVC<br>
 
-```
+```python
     #Bagging(SDGClassifier)
     from sklearn.ensemble import BaggingClassifier
 
