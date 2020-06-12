@@ -166,4 +166,7 @@ trans_text = json_data.get('translated_text')
 - [**Multiclass SVM**](Model/msvm_kernel/msvm_kernel.md)
 
 ## 모델 분석 결과
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/38775259/84488700-89ec4700-acdb-11ea-8e31-0304c6a73959.png" width="1000", height="400"></img>
+</div>
 
