@@ -106,7 +106,7 @@
 ```
 
 ## Test Set 불러오기
-파파고, 카카오, 구글 데이터 셋을 불러온다
+파파고, 카카오, 구글 데이터 셋을 불러온다.
 ```python
     # Test set 불러오기
     #Google
@@ -161,6 +161,8 @@ SDGClassifier(loss hinge), LinearSVC, SVC 세 모델 중 가장 성능이 좋았
 ```
 
 ## k-fold
+k-fold: k개의 데이터 셋을 만든 후 k번 만큼 학습과 검증을 수행하는 방법<br><br>
+overfitting의 위험 없이 accuracy를 확인하기 위해
 k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.
 |K-fold Score|Score|
 |:---|:---|
@@ -185,6 +187,8 @@ k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.
 ```
 
 ## Check the predicted percentage/class distribution
+nmt api별로 번역한 데이터셋에 대한 예측 확률이 몇 퍼센트대에 주로 머무는지 확인하고자 하였다.
+이와 더불어 nmt api들끼리 예측된 클래스의 분포가 비슷한지 파악하고자 하였다.<br>
 각 nmt_api로 번역한 test set에 대한 예측 확률과 클래스 분포를 살펴 보았다.
 
 ### Google_nmt_api test set
@@ -345,9 +349,9 @@ k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.
 
 ## Trials
 아래는 성능 개선과 모델 별 성능 비교를 위해 사용한 코드이다.
-- Bagging<br>
-- LinearSVC<br>
-- SVC<br>
+- Bagging: SVM의 성능 향상을 위해 Bagging을 사용해 보았지만 training 시간이 더욱 길어지고 정확도는 높아지지 않았다.<br>
+- LinearSVC: one vs against 방식<br>
+- SVC: one vs one 방식<br>
 
 ```python
     #Bagging(SDGClassifier)
