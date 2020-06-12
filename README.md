@@ -61,7 +61,7 @@ list_of_tweets = query_tweets('총선', begindate=datetime.date(2020,4,1),
   remove_retweet = re.sub(r"@\S+", "", remove_twitterlink)              # 트위터아이디 제거
 ```
 - **영화 데이터 크롤링**<br>
-    영화 데이터는 네이버 영화 리뷰 데이터를 긍정/부정으로 분류한 다음의 자료를 활용하였다. [**nsmc**](https://github.com/e9t/nsmc)
+    영화 데이터는 네이버 [**nsmc**](https://github.com/e9t/nsmc) 영화 리뷰 데이터를 긍정/부정으로 분류한 다음의 자료를 활용하였다. 
 - **영화 데이터 전처리**<br>
 긍정과 부정으로 레이블링 되어있는 것을 제거하고 자음, 특수문자 그리고 불필요한 공백을 제거하였다. 
 ```python
