@@ -169,6 +169,7 @@ trans_text = json_data.get('translated_text')
 ## 모델 분석 결과
 ### NMT API별 모델 분석 결과
 각 NMT API별로 MSVM, mLSTM Attention, Transformer를 조합하여 분석한 결과의 상위 24개 데이터이다.
+또한 Movie 데이터와 Twitter 데이터에 두드러지는 차이점이 존재하기 때문에 Movie 데이터만 사용했을 때의 Accuracy와 Twitter 데이터만 사용했을 때의 Accuracy, 그리고 두 데이터를 모두 사용했을 때의 Accuracy를 모두 측정하였다.
 <div align="center">
   <img src="https://user-images.githubusercontent.com/38775259/84489650-f7e53e00-acdc-11ea-824c-562be1a4a2b9.png" width="1000", height="400"></img>
 </div><br>
@@ -271,6 +272,28 @@ trans_text = json_data.get('translated_text')
     </table>
   </body>
 </html>
+
+- **구글 NMT API + Model Accuracy**<br>
+  - 영화 데이터: mLSTM + Attention - 0.39
+  - 트위터 데이터: mSVM - 0.39
+  - 모든 데이터: mSVM - 0.36
+  
+- **카카오 NMT API + Model Accuracy**<br>
+  - 영화 데이터: mLSTM + Attention - 0.39
+  - 트위터 데이터: mSVM - 0.57
+  - 모든 데이터: mSVM - 0.44
+  
+- **파파고 NMT API + Model Accuracy**<br>
+  - 영화 데이터: mLSTM + Attention - 0.36
+  - 트위터 데이터: mSVM - 0.51
+  - 모든 데이터: mSVM - 0.43
+  
+#### 총평 
+- 영화 데이터: 구글 or 카카오 NMT API + mLSTM Attention - 0.39
+- 트위터 데이터: 구글 or 카카오 NMT API + SVM - 0.57
+- 총 데이터: 구글 NMT API + SVM - 0.46
+
+따라서 영화 리뷰 데이터와 같이 문장이 짧고 감정이 다양한 Input Data를 사용할 경우에는 구글 또는 카카오 NPT API와 mLSTM + Attention 모델 조합을 사용하는 것이 성능이 가장 우수하다는 것을 알 수 있다. 반면 트위터 데이터와 같이 문장이 대체적으로 길고 감정이 한정적인 Input Data를 사용할 경우에는 구글 또는 카카오 NPT API와 mSVM 모델 조합을을 사용하는 것이 가장 우수하다. 마지막으로 전체 데이터를 사용했을 때는 구글 데이터와 mSVM 모델 조합을 사용했을 경우 0.43으로 성능이 가장 우수하였다.
 
 ### 모델별 NMT API 분석 결과
 각 모델별로 Google, Kakao, Papago NMT API를 조합하여 분석한 결과의 상위 24개 데이터이다.
@@ -376,3 +399,24 @@ trans_text = json_data.get('translated_text')
     </table>
   </body>
 </html>
+
+- **Movie Accuracy**<br>
+  - mSVM: 구글 NMT API - 0.35
+  - mLSTM + Attention: 구글, 카카오 NMT API - 0.39
+  - Transformer: 구글 NMT API - 0.32
+  
+  따라서 mLSTM + Attention을 사용할 경우에는 구글, 카카오 NPT API를 사용하는 것이 가장 정확한 것을 알 수 있다.
+  
+- **Twitter Accuracy**<br>
+  - 구글 NMT API 데이터: mSVM - 0.57
+  - 카카오 NMT API 데이터: mSVM - 0.57
+  - 파파고 NMT API 데이터: mSVM - 0.51
+  
+  따라서 구글 NMT API + mSVM 또는 카카오 NMT API + mSVM 조합이 가장 정확한 것을 알 수 있다.
+  
+- **Total Accuracy**<br>
+  - 구글 NMT API 데이터: mSVM - 0.46
+  - 카카오 NMT API 데이터: mSVM - 0.44
+  - 파파고 NMT API 데이터: mSVM - 0.43
+  
+  따라서 구글 NMT API + mSVM 또는 카카오 NMT API + mSVM 조합이 가장 정확한 것을 알 수 있다.
