@@ -171,7 +171,7 @@ trans_text = json_data.get('translated_text')
 
 ## 모델 분석 결과
 ### NMT API별 모델 분석 결과
-각 NMT API별로 MSVM, mLSTM Attention, Transformer를 조합하여 분석한 결과의 상위 24개 데이터이다.
+각 NMT API별로 MSVM, mLSTM Attention, Transformer를 조합하여 분석한 총 200개의 결과 중 상위 24개 데이터이다.
 또한 Movie 데이터와 Twitter 데이터에 두드러지는 차이점이 존재하기 때문에 Movie 데이터만 사용했을 때의 Accuracy와 Twitter 데이터만 사용했을 때의 Accuracy, 그리고 두 데이터를 모두 사용했을 때의 Accuracy를 모두 측정하였다.
 <div align="center">
   <img src="https://user-images.githubusercontent.com/38775259/84489650-f7e53e00-acdc-11ea-824c-562be1a4a2b9.png" width="1000", height="400"></img>
