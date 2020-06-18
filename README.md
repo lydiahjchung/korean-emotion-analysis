@@ -41,14 +41,14 @@
 ## Labeled Emotion Data
 
 |Emotion|Count|
-    |:---|:---|
-    |anger|2000|
-    |disgust|1948|
-    |fear|2000|
-    |happiness|2000|
-    |neutral|2000|
-    |sadness|2000|
-    |surprise|2000|
+|:---|:---|
+|anger|2000|
+|disgust|1948|
+|fear|2000|
+|happiness|2000|
+|neutral|2000|
+|sadness|2000|
+|surprise|2000|
     
 ## 데이터 크롤링
 - **Twitter 데이터 크롤링**<br>
