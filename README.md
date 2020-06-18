@@ -40,6 +40,10 @@
     
 ## Labeled Emotion Data
 
+https://www.kaggle.com/praveengovi/emotions-dataset-for-nlp
+https://www.kaggle.com/c/sa-emotions/data
+https://www.kaggle.com/eray1yildiz/using-lstms-with-attention-for-emotion-recognition/data
+
 |Emotion|Count|
 |:---|:---|
 |anger|2000|
