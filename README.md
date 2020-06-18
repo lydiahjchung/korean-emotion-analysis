@@ -38,6 +38,8 @@
     * [모델별 NMT API 분석 결과](모델별-NMT-API-분석-결과)
     * [모델 분석 총평](#모델-분석-총평)
     
+## Labeled Emotion Data
+    
 ## 데이터 크롤링
 - **Twitter 데이터 크롤링**<br>
     Tweeter Crawling API로 TWEEPY가 있으나 최근 7일 데이터만 수집할 수 있는 한계가 있다.<br>
