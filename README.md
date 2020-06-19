@@ -389,7 +389,7 @@ trans_text = json_data.get('translated_text')
           <th>T_Accuracy</th>
           <td align="center">0.57</td>
           <td align="center">0.57</td>
-          <td align="center">0.25</td>
+          <td align="center">0.51</td>
           <td align="center">0.34</td>
           <td align="center">0.32</td>
           <td align="center">0.37</td>
@@ -401,7 +401,7 @@ trans_text = json_data.get('translated_text')
           <th>Total Accuracy</th>
           <td align="center">0.46</td>
           <td align="center">0.44</td>
-          <td align="center">0.425</td>
+          <td align="center">0.43</td>
           <td align="center">0.365</td>
           <td align="center">0.355</td>
           <td align="center">0.365</td>
