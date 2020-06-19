@@ -207,14 +207,14 @@ trans_text = json_data.get('translated_text')
           <th colspan="3" width="30%">파파고</th>
         </tr>
         <tr>
-          <th width="10%">SVM</th>
-          <th width="10%">MLSTM</th>
+          <th width="10%">mSVM</th>
+          <th width="10%">mLSTM</th>
           <th width="10%">TF</th>
-          <th width="10%">SVM</th>
-          <th width="10%">MLSTM</th>
+          <th width="10%">mSVM</th>
+          <th width="10%">mLSTM</th>
           <th width="10%">TF</th>
-          <th width="10%">SVM</th>
-          <th width="10%">MLSTM</th>
+          <th width="10%">mSVM</th>
+          <th width="10%">mLSTM</th>
           <th width="10%">TF</th>
         </tr>
         <tr>
@@ -322,8 +322,8 @@ trans_text = json_data.get('translated_text')
     <table>
         <tr>
           <th colspan="1" rowspan="2" width="10%">라벨</th>
-          <th colspan="3" width="30%">SVM</th>
-          <th colspan="3" width="30%">MLSTM</th>
+          <th colspan="3" width="30%">mSVM</th>
+          <th colspan="3" width="30%">mLSTM</th>
           <th colspan="3" width="30%">TF</th>
         </tr>
         <tr>
