@@ -39,7 +39,7 @@
     * [모델 분석 총평](#모델-분석-총평)
     
 ## Labeled Emotion Data
-**7가지 감정 카테고리(happy, sad, anger, disgust, surprise, fear, neutral) classification**을 위해 아래의 세 가지 labeled emotion data를 사용하였다. 각 감정 카테고리 별 최대 2000개의 라벨링 문장을 통합하여 감정 분석 모델을 구축하는 training data set으로 사용하였다.
+**7가지 감정 카테고리(happy, sad, anger, disgust, surprise, fear, neutral) classification**을 위해 아래의 세 가지 labeled emotion data를 사용하였다. 각 감정 카테고리 별 최대 2000개의 라벨링 된 문장을 통합하여 감정 분석 모델을 구축하는 training data set으로 사용하였다.
 - https://www.kaggle.com/praveengovi/emotions-dataset-for-nlp<br>
 - https://www.kaggle.com/c/sa-emotions/data<br>
 - https://www.kaggle.com/eray1yildiz/using-lstms-with-attention-for-emotion-recognition/data<br>
