@@ -55,7 +55,8 @@
 |surprise|2000|
     
 ## 데이터 크롤링
-- **Twitter 데이터 크롤링**<br>
+### 트위터 데이터
+- **트위터 데이터 크롤링**<br>
     Tweeter Crawling API로 TWEEPY가 있으나 최근 7일 데이터만 수집할 수 있는 한계가 있다.<br>
     그 이전의 데이터를 수집하고 싶으면 Premium-Api를 구매해야 하는데 500request에 $149/월 이다.<br>
     따라서 오픈소스로 많이 사용하는 twitterscraper package를 사용하려고 한다.<br>
@@ -79,6 +80,7 @@
     remove_twitterlink = re.sub(r"pic\S+", "", remove_hypterlink)         # 트위터링크 제거
     remove_retweet = re.sub(r"@\S+", "", remove_twitterlink)              # 트위터아이디 제거
   ```
+### 영화 데이터
 - **영화 데이터 크롤링**<br>
     영화 데이터는 [**NSMC**](https://github.com/e9t/nsmc)의 네이버 영화 리뷰 데이터를 긍정/부정으로 분류한 다음의 자료를 활용하였다.<br>
     
