@@ -10,7 +10,7 @@
 Ekman은 자신의 논문 [An Argument for Basic Emotions: Cognition and Emotion](https://www.tandfonline.com/doi/abs/10.1080/02699939208411068) 을 통해 감정을 **ANGER, DISGUST, FEAR, HAPPINESS, SADNESS, SURPRISE** 로 나누었다. 영어의 경우 트위터, 댓글, 온라인 뉴스 데이터와 Ekman의 7가지 감정 분류를 활용한 **multi-category classification emotion analysis** 에 대한 연구가 활발하다.
 <br><br>
 하지만 한국어의 감정 분석은 대부분 **Single-polarity**(긍정/부정)에 머물고 있다. 그 이유에는 여러가지가 있지만 가장 큰 문제점은 한국어의 교착성이다. 한국어의 경우 영어와는 다르게 형태소별로 나눌 수 있는 교착어로 이루어져 있어 상대적으로 감성 사전을 구축하는 것이 어렵다. 감정 사전 구축이 어렵다보니 한국어의 감정 분석은 **Multi-polarity**로 나아가지 못하고 **single-polarity**에 머물고 있다.
-<br>
+<br><br>
 이로 인하여 여러 카테고리의 감성 분석 결과를 여론조사에 활용하며 기존의 기존의 통계적 분석을 대체하고 있는 미국과는 다르게 한국은 한정적인 분야에서만 감성 분석 결과를 사용하고 있다. 따라서 본 연구를 통해 한국어 문장 속에서 주요 감정들을 분석할 수 있도록 하는 방법론을 제시하고 한국어 문장의 emotion analysis에 특화된 기계 학습 모델을 찾고자 한다.<br><br>
 먼저 사전에 구축한 영어 감성사전과 한국어 데이터를 **구글, 파파고, 카카오 NMT API**를 통해 번역한 **영문 번역 데이터**를 제작하고 그 결과를 **mLSTM, Transformer, Multi-class SVM kernels** 모델에 대입해본다. 이후 총 아홉 가지의 데이터-모델 조합의 output을 비교하고, 최적의 조합을 제시한다.
 
