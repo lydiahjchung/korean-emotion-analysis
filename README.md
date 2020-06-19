@@ -421,7 +421,7 @@ trans_text = json_data.get('translated_text')
 - **mLSTM Attention + NMT API Accuracy**<br>
   - 영화 데이터: 구글 or 카카오 NMT API - 0.39
   - 트위터 데이터: 파파고 NMT API - 0.37
-  - 모든 데이터: 구글 or 카카오 NMT API - 0.37
+  - 모든 데이터: 구글 or 파파고 NMT API - 0.37
   
 - **Transformer + NMT API Accuracy**<br>
   - 영화 데이터: 구글 NMT API - 0.32
@@ -430,7 +430,7 @@ trans_text = json_data.get('translated_text')
   
 ### 모델 분석 총평 
 - 영화 데이터: 구글 or 카카오 NMT API + mLSTM Attention - 0.39
-- 트위터 데이터: 구글 or 카카오 NMT API + SVM - 0.57
-- 총 데이터: 구글 NMT API + SVM - 0.46
+- 트위터 데이터: 구글 or 카카오 NMT API + mSVM - 0.57
+- 총 데이터: 구글 NMT API + mSVM - 0.46
 
 따라서 영화 리뷰 데이터와 같이 문장이 짧고 감정이 다양한 Input Data를 사용할 경우에는 구글 또는 카카오 NPT API와 mLSTM + Attention 모델 조합을 사용하는 것이 성능이 가장 우수하다는 것을 알 수 있다. 반면 트위터 데이터와 같이 문장이 대체적으로 길고 감정이 한정적인 Input Data를 사용할 경우에는 구글 또는 카카오 NPT API와 mSVM 모델 조합을을 사용하는 것이 가장 우수하다. 마지막으로 전체 데이터를 사용했을 때는 구글 데이터와 mSVM 모델 조합을 사용했을 경우 0.43으로 성능이 가장 우수하였다.
