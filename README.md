@@ -10,9 +10,9 @@
 영어의 경우 그 단점을 보완하기 위해 감정을 단순히 긍정, 부정으로 나누는 게 아닌, 더 상세하게 나누는 연구가 활발히 진행 중이다. 
 트위터, 댓글, 온라인 뉴스 데이터를 사용하여 **‘happy, sad, anger, disgust, surprise, fear’** 등과 같은 세부적인 감정들로 감정 카테고리를 분류하고 있다.
 <br><br>
-한국어 문장은 영어와는 다르게 형태소별로 나눌 수 있는 교착어로 이루어져 있으며 이 특성으로 인해 한국어로 된 감성 사전 구축이 상대적으로 더 어렵다.
-감성 사전 구축의 어려움으로 인하여 한국어 **sentiment-analysis** 또한 **single-polarity**에 머물고 있다. 
-여러 카테고리의 감성 분석 결과를 활용하여 여론조사를 대체하고 있는 미국과는 다르게 한국은 한정적인 분야에서만 감성 분석 결과를 사용하고 있다. 
+한국어 문장은 영어와는 다르게 형태소별로 나눌 수 있는 교착어로 이루어져 있으며 이 특성으로 인해 한국어로 된 감정 사전 구축이 상대적으로 더 어렵다.
+감정 사전 구축의 어려움으로 인하여 한국어 **sentiment-analysis** 또한 **single-polarity**에 머물고 있다. 
+여러 카테고리의 감정 분석 결과를 활용하여 여론조사를 대체하고 있는 미국과는 다르게 한국은 한정적인 분야에서만 감정 분석 결과를 사용하고 있다.  
 <br><br>
 한국어 문장을 emotion analysis를 통해 **7가지 감정 카테고리(happy, sad, anger, disgust, surprise, fear, neutral) classification**을 진행하는 것을 목표로 한다. 
 한국어 데이터 수집하여 **구글, 파파고, 카카오 NMT API**를 통해 **영문 번역 데이터**를 제작하고 그 결과를 모델에 대입해본다. 
@@ -29,7 +29,7 @@
     * [Google NMT API](#google-nmt-api)
     * [Naver Papago NMT API](-#aver-papago-nmt-api)
     * [Kakao NMT API](#kakao-nmt-api)
-5. [감성 분석 모델](#감성-분석-모델)
+5. [감정 분석 모델](#감정-분석-모델)
     * [mLSTM + attention](#mlstm-+-attention)
     * [Transformer](#transformer)
     * [Multiclass SVM](#multiclass-svm)
@@ -39,7 +39,7 @@
     * [모델 분석 총평](#모델-분석-총평)
     
 ## Labeled Emotion Data
-**7가지 감정 카테고리(happy, sad, anger, disgust, surprise, fear, neutral) classification**을 위해 아래의 세 가지 labeled emotion data를 사용하였다.
+**7가지 감정 카테고리(happy, sad, anger, disgust, surprise, fear, neutral) classification**을 위해 아래의 세 가지 labeled emotion data를 사용하였다. 각 감정 카테고리 별 최대 2000개의 라벨링 문장을 통합하여 감정 분석 모델을 구축하는 training data set으로 사용하였다.
 - https://www.kaggle.com/praveengovi/emotions-dataset-for-nlp<br>
 - https://www.kaggle.com/c/sa-emotions/data<br>
 - https://www.kaggle.com/eray1yildiz/using-lstms-with-attention-for-emotion-recognition/data<br>
@@ -181,7 +181,7 @@ json_data = json.loads(r.text)
 trans_text = json_data.get('translated_text')
  ```
 -------------
-## 감성 분석 모델
+## 감정 분석 모델
 - [**mLSTM + attention**](Model/mlstm_attention/mlstm_attention.md)
 - [**Transformer**](Model/transformer/transformer.md)
 - [**Multiclass SVM**](Model/msvm_kernel/msvm_kernel.md)
