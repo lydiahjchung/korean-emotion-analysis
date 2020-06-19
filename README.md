@@ -185,7 +185,7 @@ trans_text = json_data.get('translated_text')
 ## 모델 분석 결과
 ### NMT API별 모델 분석 결과
 각 NMT API별로 MSVM, mLSTM Attention, Transformer를 조합하여 분석한 총 200개의 결과 중 상위 24개 데이터이다.
-또한 Movie 데이터와 Twitter 데이터에 두드러지는 차이점이 존재하기 때문에 Movie 데이터만 사용했을 때의 Accuracy와 Twitter 데이터만 사용했을 때의 Accuracy, 그리고 두 데이터를 모두 사용했을 때의 Accuracy를 모두 측정하였다.
+또한 Movie 데이터와 Twitter 데이터에 두드러지는 차이점이 존재하기 때문에 Movie 데이터만 사용했을 때의 Precision과 Twitter 데이터만 사용했을 때의 Precision, 그리고 두 데이터를 모두 사용했을 때의 Precision을 모두 측정하였다.
 <div align="center">
   <img src="https://user-images.githubusercontent.com/38775259/84489650-f7e53e00-acdc-11ea-824c-562be1a4a2b9.png" width="1000", height="400"></img>
 </div><br>
@@ -250,7 +250,7 @@ trans_text = json_data.get('translated_text')
           <td align="center">43</td>
         </tr>
         <tr>
-          <th>M_Accuracy</th>
+          <th>M_Precision</th>
           <td align="center">0.35</td>
           <td align="center">0.39</td>
           <td align="center">0.32</td>
@@ -262,7 +262,7 @@ trans_text = json_data.get('translated_text')
           <td align="center">0.27</td>
         </tr>
         <tr>
-          <th>T_Accuracy</th>
+          <th>T_Precision</th>
           <td align="center">0.57</td>
           <td align="center">0.34</td>
           <td align="center">0.24</td>
@@ -274,7 +274,7 @@ trans_text = json_data.get('translated_text')
           <td align="center">0.16</td>
         </tr>
         <tr>
-          <th>Total Accuracy</th>
+          <th>Total Precision</th>
           <td align="center">0.46</td>
           <td align="center">0.365</td>
           <td align="center">0.28</td>
@@ -289,17 +289,17 @@ trans_text = json_data.get('translated_text')
   </body>
 </html>
 
-- **구글 NMT API + Model Accuracy**<br>
+- **구글 NMT API + Model Precision**<br>
   - 영화 데이터: mLSTM + Attention - 0.39
   - 트위터 데이터: mSVM - 0.39
   - 모든 데이터: mSVM - 0.36
   
-- **카카오 NMT API + Model Accuracy**<br>
+- **카카오 NMT API + Model Precision**<br>
   - 영화 데이터: mLSTM + Attention - 0.39
   - 트위터 데이터: mSVM - 0.57
   - 모든 데이터: mSVM - 0.44
   
-- **파파고 NMT API + Model Accuracy**<br>
+- **파파고 NMT API + Model Precision**<br>
   - 영화 데이터: mLSTM + Attention - 0.36
   - 트위터 데이터: mSVM - 0.51
   - 모든 데이터: mSVM - 0.43
@@ -370,7 +370,7 @@ trans_text = json_data.get('translated_text')
           <td align="center">43</td>
         </tr>
         <tr>
-          <th>M_Accuracy</th>
+          <th>M_Precision</th>
           <td align="center">0.35</td>
           <td align="center">0.31</td>
           <td align="center">0.34</td>
@@ -382,7 +382,7 @@ trans_text = json_data.get('translated_text')
           <td align="center">0.27</td>
         </tr>
         <tr>
-          <th>T_Accuracy</th>
+          <th>T_Precision</th>
           <td align="center">0.57</td>
           <td align="center">0.57</td>
           <td align="center">0.51</td>
@@ -394,7 +394,7 @@ trans_text = json_data.get('translated_text')
           <td align="center">0.16</td>
         </tr>
         <tr>
-          <th>Total Accuracy</th>
+          <th>Total Precision</th>
           <td align="center">0.46</td>
           <td align="center">0.44</td>
           <td align="center">0.43</td>
@@ -409,17 +409,17 @@ trans_text = json_data.get('translated_text')
   </body>
 </html>
 
-- **mSVM + NMT API Accuracy**<br>
+- **mSVM + NMT API Precision**<br>
   - 영화 데이터: 구글 NMT API - 0.35
   - 트위터 데이터: 구글 or 카카오 NMT API - 0.57
   - 모든 데이터: 구글 NMT API - 0.46
   
-- **mLSTM Attention + NMT API Accuracy**<br>
+- **mLSTM Attention + NMT API Precision**<br>
   - 영화 데이터: 구글 or 카카오 NMT API - 0.39
   - 트위터 데이터: 파파고 NMT API - 0.37
   - 모든 데이터: 구글 or 파파고 NMT API - 0.37
   
-- **Transformer + NMT API Accuracy**<br>
+- **Transformer + NMT API Precision**<br>
   - 영화 데이터: 구글 NMT API - 0.32
   - 트위터 데이터: 구글 NMT API - 0.24
   - 모든 데이터: 구글 NMT API - 0.28
