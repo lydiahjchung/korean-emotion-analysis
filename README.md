@@ -402,12 +402,12 @@ trans_text = json_data.get('translated_text')
           <td align="center">0.46</td>
           <td align="center">0.44</td>
           <td align="center">0.43</td>
-          <td align="center">0.365</td>
-          <td align="center">0.355</td>
-          <td align="center">0.365</td>
+          <td align="center">0.37</td>
+          <td align="center">0.36</td>
+          <td align="center">0.37</td>
           <td align="center">0.28</td>
-          <td align="center">0.225</td>
-          <td align="center">0.215</td>
+          <td align="center">0.23</td>
+          <td align="center">0.22</td>
         </tr>
     </table>
   </body>
