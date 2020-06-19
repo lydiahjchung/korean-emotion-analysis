@@ -39,7 +39,7 @@
     * [모델 분석 총평](#모델-분석-총평)
     
 ## Labeled Emotion Data
-**7가지 감정 카테고리(happy, sad, anger, disgust, surprise, fear, neutral) classification**을 위해 아래의 세 가지 labeled emotion data를 사용하였다. 각 감정 카테고리 별 최대 2000개의 라벨링 된 문장을 통합하여 감정 분석 모델을 구축하는 training data set으로 사용하였다.
+**7가지 감정 카테고리(happy, sad, anger, disgust, surprise, fear, neutral) classification**을 위해 아래의 세 가지 labeled emotion data를 사용하였다. 각 감정 카테고리 별 최대 2000개의 라벨링 문장을 통합하여 감정 분석 모델을 구축하는 training data set으로 사용하였다.
 - https://www.kaggle.com/praveengovi/emotions-dataset-for-nlp<br>
 - https://www.kaggle.com/c/sa-emotions/data<br>
 - https://www.kaggle.com/eray1yildiz/using-lstms-with-attention-for-emotion-recognition/data<br>
@@ -58,7 +58,8 @@
 - **Twitter 데이터 크롤링**<br>
     Tweeter Crawling API로 TWEEPY가 있으나 최근 7일 데이터만 수집할 수 있는 한계가 있다.<br>
     그 이전의 데이터를 수집하고 싶으면 Premium-Api를 구매해야 하는데 500request에 $149/월 이다.<br>
-    따라서 오픈소스로 많이 사용하는 twitterscraper package를 사용하려고 한다.
+    따라서 오픈소스로 많이 사용하는 twitterscraper package를 사용하려고 한다.<br>
+    데이터는 **총선**을 키워드로 검색하였다.
   ```python
     try:
         from twitterscraper.query import query_tweets
@@ -66,12 +67,10 @@
     except:
         !pip install twitterscraper
         from twitterscraper.query import query_tweets
-        from twitterscr  ```
-  데이터는 **총선**을 키워드로 검색하였다.
-  ```python
-  list_of_tweets = query_tweets('총선', begindate=datetime.date(2020,4,1), 
-         aper.tweet import Tweet
-                       enddate=datetime.date(2020,4,30))
+        from twitterscr
+        
+        list_of_tweets = query_tweets('총선', begindate=datetime.date(2020,4,1), 
+                                              enddate=datetime.date(2020,4,30))
   ```
 - **Twitter 데이터 전처리**<br>
     데이터 전처리를 위하여 [**Soyspacing**](https://github.com/lovit/soyspacing) 패키지를 사용하였다. 추가적으로 링크, 트위터 아이디 등을 불용어처리 하였다.
