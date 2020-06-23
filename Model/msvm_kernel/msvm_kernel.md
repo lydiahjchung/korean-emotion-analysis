@@ -361,7 +361,7 @@ nmt api별로 번역한 데이터셋에 대한 예측 확률이 몇 퍼센트대
     param = [{'loss':['hinge'], 'penalty':['l2'],'alpha':[1e-2], 'random_state':[42], 'max_iter':[10], 'tol':[None]}]
     sgd_grid = GridSearchCV(SGDClassifier(),param_grid=param, scoring='accuracy')
 
-    n_estimators = 1000
+    n_estimators = 100
     n_jobs = 5
     model = BaggingClassifier(base_estimator=sgd_grid,
                               n_estimators=n_estimators,
