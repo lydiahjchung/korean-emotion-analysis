@@ -99,7 +99,6 @@ Ekman은 자신의 논문 [An Argument for Basic Emotions: Cognition and Emotion
     data_train = [line.replace('ㅂ','' ) for line in data_train]
     data_train = [line.replace('ㅈ','' ) for line in data_train]
     data_train = [line.replace('ㅊ','' ) for line in data_train]
-    data_train = [line.replace('ㅊ','' ) for line in data_train]
     data_train = [line.replace('ㅏ','' ) for line in data_train]
 
     #특수 문자 제거
