@@ -46,7 +46,7 @@
     col_name = ['text', 'label']
 
     #trainset 불러오기
-    dataset = pd.read_csv(path + "/labeled_final.txt", names=col_name, sep=';')
+    df_train = pd.read_csv(path + "/labeled_final.txt", names=col_name, sep=';')
     X_train = df_train.text
     y_train = df_train.label
 ```
@@ -120,9 +120,23 @@
     y_test = df_test.label
 
     #Papago
-    df_test = pd.read_csv('/content/drive/Shared drives/데이터분석캡스톤디자인/데이터/최종 test 데이터/papago_final_test.txt',sep=';', names =['text','label'])
-    X_test = df_test.text
-    y_test = df_test.label
+    twitter = []        # 트위터 데이터 초기화
+    label = []          # 라벨링 데이터 초기화
+
+    # 데이터 불러오기
+    with open('/content/drive/Shared drives/데이터분석캡스톤디자인/데이터/최종 test 데이터/papago_final_test.txt', 'r', encoding='utf-8') as f:
+    lines = f.readlines()
+
+    # 트위터/라벨링 데이터 리스트로 저장하기
+    for line in lines:
+      twitter.append(''.join(line.split(';')[0:-1]).replace('\n', ''))  # 트위터 데이터
+      label.append(line.split(';')[-1].replace('\n', ''))               # 라벨링 데이터
+
+    X_test = pd.Series(twitter) 
+    y_test = pd.Series(label)
+
+    print(X_test)
+    print(type(X_test))
 ```
 
 ## 모델 훈련
@@ -167,22 +181,22 @@ k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.<br><br>
 결과: 10-fold가 0.862로 성능이 가장 좋음
 |K-fold Score|Score|
 |:---|:---|
-|3-fold score mean|0.849|
-|5-fold score mean|0.856|
-|10-fold score mean|0.862|
+|3-fold score mean|0.697|
+|5-fold score mean|0.736|
+|10-fold score mean|0.749|
 ```pyhton
     #3-fold
-    scores = cross_val_score(sgd,  df.text, df.label, cv=3)
+    scores = cross_val_score(sgd,  df_train.text, df_train.label, cv=3)
     print('cross-val-score \n{}'.format(scores))
     print('cross-val-score.mean \n{:.3f}'.format(scores.mean()))
 
     #5-fold
-    scores = cross_val_score(sgd, df.text, df.label, cv=5)
+    scores = cross_val_score(sgd, df_train.text, df_train.label, cv=5)
     print('cross-val-score \n{}'.format(scores))
     print('cross-val-score.mean \n{:.3f}'.format(scores.mean()))
 
     #10-fold
-    scores = cross_val_score(sgd,  df.text, df.label, cv=10)
+    scores = cross_val_score(sgd,  df_train.text, df_train.label, cv=10)
     print('cross-val-score \n{}'.format(scores))
     print('cross-val-score.mean \n{:.3f}'.format(scores.mean()))
 ```
