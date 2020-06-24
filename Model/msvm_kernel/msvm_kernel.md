@@ -178,7 +178,7 @@ SDGClassifier(loss hinge), LinearSVC, SVC 세 모델 중 가장 성능이 좋았
 k-fold: k개의 데이터 셋을 만든 후 k번 만큼 학습과 검증을 수행하는 방법<br><br>
 overfitting의 위험 없이 accuracy를 확인하기 위해
 k-fold를 통해 조금 더 정확한 모델 평가를 해 보았다.<br><br>
-결과: 10-fold가 0.862로 성능이 가장 좋음
+결과: 10-fold가 0.749로 성능이 가장 좋음
 |K-fold Score|Score|
 |:---|:---|
 |3-fold score mean|0.697|
