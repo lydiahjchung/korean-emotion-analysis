@@ -28,10 +28,11 @@ Ekman은 자신의 논문 [An Argument for Basic Emotions: Cognition and Emotion
     * [mLSTM + attention](#mlstm-+-attention)
     * [Transformer](#transformer)
     * [Multiclass SVM](#multiclass-svm)
-6. [결과 분석](#결과-분석)
+6. [모델 분석 결과](#모델-분석-결과)
     * [NMT API별 모델 분석 결과](NMT-API별-모델-분석-결과)
     * [모델별 NMT API 분석 결과](모델별-NMT-API-분석-결과)
     * [모델 분석 총평](#모델-분석-총평)
+7. [결과물](#결과물)
     
 ## Labeled Emotion Data
 **7가지 감정 카테고리(happy, sad, anger, disgust, surprise, fear, neutral) classification**을 위해 아래의 세 가지 labeled emotion data를 사용하였다. 각 감정 카테고리 별 최대 2000개의 라벨링 문장을 통합하여 감정 분석 모델을 구축하는 training data set으로 사용하였다.
@@ -448,3 +449,7 @@ trans_text = json_data.get('translated_text')
 트위터 데이터와 같이 문장이 대체적으로 길고 감정이 한정적인 Input Data를 사용할 경우에는 구글 또는 카카오 NPT API와 mSVM 모델 조합을을 사용하는 것이 가장 우수하다. 
 #### 전체 데이터
 전체 데이터를 사용했을 때는 구글 데이터와 mSVM 모델 조합을 사용했을 경우 0.46으로 성능이 가장 우수하였다.
+
+## 결과물
+- 최종 보고서: [**Final Report**](Reports/Final_Report.pdf)
+- 시연 영상: [**Demo Video**](Reports/Demo_Video.mp4)
