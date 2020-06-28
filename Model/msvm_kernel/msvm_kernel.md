@@ -141,16 +141,16 @@
 
 ## 모델 훈련
 **데이터 전처리:**<br>
- mSVM 모델에 적용하기 전에 두 단계를 거쳐 전처리를 진행하였다. 가장 먼저, 텍스트를 토큰 리스트로 변환한 후 각 텍스트에서 토큰 출현 빈도를 센 다음 각 텍스트를 BOW 인코딩 벡터로 변환하는 CountVectorizer를 사용하였다. 이후 CountVectorizer를 사용하여 단어 수를 계산한 뒤 IDF(역 문서 빈도)값 계산한 후 Tf-idf 점수 계산하는 Tfidftransformer를 사용하여 노멀라이제이션을 진행하였다.<br>
+ mSVM 모델에 적용하기 전에 두 단계를 거쳐 전처리를 진행하였다. 가장 먼저, 텍스트를 토큰 리스트로 변환한 후 각 텍스트에서 토큰 출현 빈도를 센 다음 각 텍스트를 BOW 인코딩 벡터로 변환하는 CountVectorizer를 사용하였다. 이후 CountVectorizer를 사용하여 단어 수를 계산한 뒤 IDF(역 문서 빈도)값 계산한 후 Tf-idf 점수 계산하는 Tfidftransformer를 사용하여 노멀라이제이션을 진행하였다.<br><br>
 **모델 선정 이유:**<br>
- N. M. Hakak, M. Mohd, M. Kirmani and M. Mohd, “Emotion analysis: A survey” 에서는 감정 분석과 관련하여 감정의 표현, 여러가지 감정 분석 모델, 감정 분석 모델에 적용된 데이터, 여러가지 computational 접근법을 소개하고 있다. 이때 각 감정 분석 모델의 성능을 비교한 부분이 있는데 Balabantaray, Mudasir Mohammad, and Nibha Sharma- Multi-Class Twitter Emotion Classification: A New Approach 아티클에서 사용한 Multi Class SVM의 정확도가 73.24%로 가장 높은 것을 확인할 수 있었다. 따라서 해당 모델을 사용하여 감정 분석을 진행하였다.<br>
+ N. M. Hakak, M. Mohd, M. Kirmani and M. Mohd, “Emotion analysis: A survey” 에서는 감정 분석과 관련하여 감정의 표현, 여러가지 감정 분석 모델, 감정 분석 모델에 적용된 데이터, 여러가지 computational 접근법을 소개하고 있다. 이때 각 감정 분석 모델의 성능을 비교한 부분이 있는데 Balabantaray, Mudasir Mohammad, and Nibha Sharma- Multi-Class Twitter Emotion Classification: A New Approach 아티클에서 사용한 Multi Class SVM의 정확도가 73.24%로 가장 높은 것을 확인할 수 있었다. 따라서 해당 모델을 사용하여 감정 분석을 진행하였다.<br><br>
 **모델 특징:**<br>
- KSVM은 SVM과는 다르게 선형적으로 분류되지 않는 클래스를 구분하도록 비선형적 특성을 추가한 모델이다. SVM에 Kernel Trick을 사용하여 데이터를 확장하지 않고 확장된 특성에 대한 데이터 포인트들의 거리를 계산한다. 해당 모델을 사용한 Balabantaray, Mudasir Mohammad, and Nibha Sharma- Multi-Class Twitter Emotion Classification: A New Approach에서는 Crawling한 305,310개의 Tweet 데이터를 사용하였으며 Unigram/Bigrams/Personal-pronouns/Adjectives/Word-net Affect emotion lexicon/Word-net Affect emotion lexicon with left/right context/Word-net Affect emotion POS/POS/POS-Bigrams/Dependency-Parsing Feature/Emoticons를 feature로 사용하였다.<br>
+ KSVM은 SVM과는 다르게 선형적으로 분류되지 않는 클래스를 구분하도록 비선형적 특성을 추가한 모델이다. SVM에 Kernel Trick을 사용하여 데이터를 확장하지 않고 확장된 특성에 대한 데이터 포인트들의 거리를 계산한다. 해당 모델을 사용한 Balabantaray, Mudasir Mohammad, and Nibha Sharma- Multi-Class Twitter Emotion Classification: A New Approach에서는 Crawling한 305,310개의 Tweet 데이터를 사용하였으며 Unigram/Bigrams/Personal-pronouns/Adjectives/Word-net Affect emotion lexicon/Word-net Affect emotion lexicon with left/right context/Word-net Affect emotion POS/POS/POS-Bigrams/Dependency-Parsing Feature/Emoticons를 feature로 사용하였다.<br><br>
 **모델 구현:**<br>
  multi-class svm 모델을 구현할 수 있는 대표적인 사이킷런의 패키지 3가지(SGDClassifier, LinearSVC, SVC)중 최적의 성능을 내는 알고리즘을 찾고자 하였다. 세 패키지의 알고리즘의 차이는 LinearSVC와 SVC는 각각 멀티클래시피케이션을 ‘one vs rest’와 ‘one vs one’ 방식으로 한다는 점에서 차이가 있었고 SGDClassifier는 liblinear와 libsvm을 사용하는 두 알고리즘과 다르게 stochastic gradient descent 방식으로 옵티마이징하였다.
- 각 모델들을 파라미터 튜닝을 해가며 데이터를 7:3 비율로 나누어 train/test set으로 검증 결과에 대해 비교하였다. 그렇게 train/test set에 대한 검증 결과를 가장 높게 나오도록 하는 파라미터를 가지고 정확한 성능 검정을 위해 5-fold 교차 검증으로 세 모델의 성능을 비교하였다. 세 알고리즘의 5-fold의 결과 SGDClassifier가 타 모델에 비해 성능이 0.01이 더 좋았다. 뿐만 아니라 모델의 training 속도도 가장 빨랐다. 그렇게 SGDClassifier 패키지의 모델을 사용하여 감정 분류를 하기로 결정하였다. 이후 SVM의 성능을 높이는 대표적인 방법 중 하나인 Bagging으로 성능을 높여보고자 하였지만 유의미한 결과를 내지는 못하였다.<br>
+ 각 모델들을 파라미터 튜닝을 해가며 데이터를 7:3 비율로 나누어 train/test set으로 검증 결과에 대해 비교하였다. 그렇게 train/test set에 대한 검증 결과를 가장 높게 나오도록 하는 파라미터를 가지고 정확한 성능 검정을 위해 5-fold 교차 검증으로 세 모델의 성능을 비교하였다. 세 알고리즘의 5-fold의 결과 SGDClassifier가 타 모델에 비해 성능이 0.01이 더 좋았다. 뿐만 아니라 모델의 training 속도도 가장 빨랐다. 그렇게 SGDClassifier 패키지의 모델을 사용하여 감정 분류를 하기로 결정하였다. 이후 SVM의 성능을 높이는 대표적인 방법 중 하나인 Bagging으로 성능을 높여보고자 하였지만 유의미한 결과를 내지는 못하였다.<br><br>
 
-결국 SGDClassifier로 multi-class svm을 구현하였고, 이후 레이블링이 되어있는 train set을 학습시킨 후 CalibratedClassifierCV를 사용하여 레이블링이 되어있지 않은 200개의 문장이 담긴 test set에 대하여, 각 문장별로 모델이 낸 예측 확률과 클래스 결과를 얻을 수 있도록 하였다.<br>
+결국 SGDClassifier로 multi-class svm을 구현하였고, 이후 레이블링이 되어있는 train set을 학습시킨 후 CalibratedClassifierCV를 사용하여 레이블링이 되어있지 않은 200개의 문장이 담긴 test set에 대하여, 각 문장별로 모델이 낸 예측 확률과 클래스 결과를 얻을 수 있도록 하였다.<br><br>
 ```python
     # SGDClassifier - loss = 'hinge'
     cvect = CountVectorizer()
@@ -373,7 +373,7 @@ nmt api별로 번역한 데이터셋에 대한 예측 확률이 몇 퍼센트대
 ```
 
 ## Trials
-아래는 성능 개선과 모델 별 성능 비교를 위해 사용한 코드이다.
+아래는 모델 별 조정 파라미터, test set accuracy, 5-fold accuracy, 그리고 코드이다.
 |Package|Parameter|Best Accuracy|5-fold Acuuracy(mean)|
 |:---|:---|:---|:---|
 |SGDClassifier|penalty, alpha, random_state, max_iter|0.747|0.736|
