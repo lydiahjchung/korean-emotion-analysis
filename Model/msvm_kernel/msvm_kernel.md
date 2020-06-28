@@ -188,7 +188,7 @@
 k-fold: k개의 데이터 셋을 만든 후 k번 만큼 학습과 검증을 수행하는 방법<br><br>
 overfitting의 위험 없이 accuracy를 확인하기 위해
 k-fold를 통해 SGDClassifier 모델을 조금 더 정확하게 평가를 해 보았다.<br><br>
-결과:<br>
+
 |K-fold Score|Score|
 |:---|:---|
 |3-fold score mean|0.697|
